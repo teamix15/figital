@@ -17,7 +17,7 @@
     <CommonButton label="" class="bg-[#E6007E] w-[140px]" />
   </div>
 
-  <div class="flex justify-between">
+  <div class="flex flex-wrap justify-between">
     <div v-for="n in 4" :key="n">
       <div class="bg-[#E6007E] rounded-[40px] h-[220px] min-w-[305px] gap-8 flex-grow-0 p-4 mt-8">
       </div>
