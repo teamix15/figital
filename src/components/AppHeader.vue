@@ -1,6 +1,6 @@
 <template>
-    <div class="flex justify-between rounded mb-[32px]">
-        <CommonButton label="" class="w-[162px] bg-[#E6007E]" />
+    <div class="flex justify-between rounded mb-[32px] w-full">
+        <CommonButton label="" class="w-8 h-8 md:w-[162px] bg-[#E6007E]" />
         <div class="flex items-center gap-[20px]">
             <CommonButton label="search" />
             <RouterLink

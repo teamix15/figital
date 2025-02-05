@@ -1,19 +1,20 @@
 <template>
-    <div class="flex flex-col justify-between gap-10 md:flex-row">
+    <div class="flex flex-col justify-between gap-10 md:flex-row w-full">
         <div class="flex flex-col justify-between">
-            <p
-                class="font-[700] text-[36px] md:text-[86px] leading-[40px] md:leading-[100px] uppercase w-full md:w-[650px]">
+            <p class="font-[700] text-[36px] md:text-[86px] leading-[40px] md:leading-[100px] uppercase w-full">
                 english for design
             </p>
-            <div
+            <p
                 class="font-[700] border-5 border-[#E6007E] rounded-[40px] min-h-[200px] md:min-h-[517px] p-6 mt-[16px] md:mt-[32px]">
-                The key to modern and effective learning. Here you get access to unique educational materials adapted
-                to your level and goals. The interactive format helps to delve deeper into the topic, and the thoughtful
+                The key to modern and effective learning. Here you get access to unique educational materials
+                adapted
+                to your level and goals. The interactive format helps to delve deeper into the topic, and the
+                thoughtful
                 design makes learning interesting and accessible.
-            </div>
+            </p>
         </div>
         <div
-            class="block font-[700] border-5 border-[#E6007E] rounded-[40px] p-6 min-w-[300px] md:min-w-[400px] flex-1 max-h-[775px] max-w-[470px]">
+            class="hidden lg:block font-[700] border-5 border-[#E6007E] rounded-[40px] p-6 min-w-[300px] flex-1 max-h-[775px] max-w-[470px]">
             <img src="/src/assets/logo.svg" class="h-full w-fill">
         </div>
     </div>
@@ -39,11 +40,14 @@
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                         labore
                         et
-                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                        ut
                         aliquip
-                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum
                         dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                        officia
                         deserunt mollit anim id est laborum.
                     </p>
                 </div>
