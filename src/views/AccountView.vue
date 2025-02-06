@@ -13,14 +13,14 @@
 
     </div>
 
-    <div class="flex justify-end mt-8 gap-8">
+    <div class="flex justify-center md:justify-end mt-8 gap-8">
       <CommonButton label="" class="bg-primary w-[140px]" />
       <CommonButton label="" class="bg-primary w-[140px]" />
     </div>
 
-    <div class="flex flex-wrap justify-center gap-8">
+    <div class="flex flex-wrap justify-center md:justify-between gap-8">
       <div v-for="n in 4" :key="n">
-        <div class="bg-primary rounded-[40px] h-[220px] min-w-[305px] gap-8 flex-grow-0 p-4 mt-8">
+        <div class="bg-primary rounded-[40px] h-[220px] w-[305px] lg:w-[220px] xl:w-[270px] gap-8 flex-grow-0 p-4 mt-8">
         </div>
         <div class="flex flex-col justify-center">
           <p class="text-center font-[700]">Reading</p>

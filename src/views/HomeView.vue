@@ -2,7 +2,8 @@
     <div class="flex flex-col justify-center items-center">
         <div class="flex flex-col justify-between gap-10 md:flex-row">
             <div class="flex flex-col justify-between">
-                <p class="font-[700] text-2xl md:text-[86px] leading-[40px] md:leading-[100px] uppercase w-full">
+                <p
+                    class="font-[700] text-2xl md:text-[86px] leading-[40px] md:leading-[100px] uppercase w-full text-center sm:text-start">
                     english for design
                 </p>
                 <div
@@ -25,7 +26,7 @@
         <div class="flex flex-col mt-[20px] md:mt-[40px]">
             <div class="flex flex-col justify-center">
                 <p class="uppercase font-[700] text-[36px] md:text-[56px]">why we?</p>
-                <p class="font-[700] text-[16px] md:text-[20px] break-words whitespace-normal">
+                <p class="font-[700] text-[16px] md:text-[20px] text-justify">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                     labore
                     et
@@ -36,9 +37,9 @@
                     fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
                     deserunt mollit anim id est laborum.
                 </p>
-                <div class="flex gap-8 justify-center mt-[20px] p-4 flex-wrap">
+                <div class="flex gap-8 justify-center lg:justify-between mt-[20px] flex-wrap">
                     <div v-for="n in 4" :key="n"
-                        class="border-5 border-primary font-[700] text-[16px] max-w-[270px] md:text-[20px] rounded-[40px] h-[270px] md:h-[185px] gap-8 p-4 overflow-hidden">
+                        class="border-5 border-primary font-[700] text-[16px] md:w-[305px] lg:w-[220px] xl:w-[270px] md:text-[20px] rounded-[40px] h-[290px] md:h-[185px] gap-8 p-4 overflow-hidden">
                         <p class="line-clamp-5">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                             labore et dolore magna aliqua.
@@ -64,7 +65,6 @@
                     special vocabulary
                 </div>
             </div>
-
         </div>
 
         <div class="border-[5px] border-primary rounded-[40px] p-[20px] mt-[40px]">
