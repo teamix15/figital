@@ -1,13 +1,19 @@
 <template>
-    <button
-        class="flex items-center content-center uppercase h-[54px] border-3 border-primary text-[20px] color-[#111111] rounded-[40px] p-4">
-        {{ label }}
-    </button>
+  <button
+    class="flex items-center justify-center text-center uppercase h-14 rounded-[40px] p-4 hover:cursor-pointer transition-all"
+    :class="{
+      'bg-primary text-[#111]': variant !== 'ghost',
+      'bg-white border-[3px] border-primary text-[#111]': variant === 'ghost',
+    }"
+  >
+    {{ label }}
+  </button>
 </template>
 
 <script setup lang="ts">
 interface Props {
-    label: string;
+  label: string
+  variant?: 'ghost'
 }
 
 defineProps<Props>()

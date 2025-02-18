@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col w-full sm:w-[600px] md:w-[700px] lg:w-[1000px] xl:w-[1200px] 2xl:w-[1400px]">
+  <div
+    class="flex flex-col w-full sm:w-[600px] md:w-[700px] lg:w-[1000px] xl:w-[1200px] 2xl:w-[1400px]"
+  >
     <AppHeader />
-    <div>
-      <slot />
-    </div>
+    <slot />
     <AppFooter />
   </div>
 </template>
