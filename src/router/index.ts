@@ -1,6 +1,10 @@
 import HomeView from '@/views/HomeView.vue'
 import UnitsView from '@/views/UnitsView.vue'
 import AccountView from '@/views/AccountView.vue'
+import SignUpView from '@/views/SignUpView/SignUpView.vue'
+import SignInView from '@/views/SignInView/SignInView.vue'
+import DictionaryView from '@/views/DictionaryView/DictionaryView.vue'
+
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -12,6 +16,16 @@ const router = createRouter({
       component: HomeView,
     },
     {
+      path: '/login',
+      name: 'login',
+      component: SignInView,
+    },
+    {
+      path: '/sign-up',
+      name: 'sign-up',
+      component: SignUpView,
+    },
+    {
       path: '/units',
       name: 'units',
       component: UnitsView,
@@ -20,6 +34,11 @@ const router = createRouter({
       path: '/account',
       name: 'account',
       component: AccountView,
+    },
+    {
+      path: '/dictionary',
+      name: 'dictionary',
+      component: DictionaryView,
     },
   ],
 })

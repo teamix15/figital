@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Colors */
+  --color-primary: #7080e7;
+  --color-accent: #fc4994;
+  --color-accent-overlay: #85204a;
+
+  --color-text-white: #ffffff;
+  --color-text-black: #282828;
+  --color-text-white-secondary: #ececec;
+}

@@ -1,15 +1,15 @@
 <template>
   <div ref="nav">
     <div @click="toggleIsOpen" class="flex justify-center items-center h-[40px] w-[40px] rounded-full bg-primary">
-      <img src="@/assets/icons/bars-3.svg" class="w-[30px] h-[30px] cursor-pointer" />
+      <img src="@/shared/assets/icons/bars-3.svg" class="w-[30px] h-[30px] cursor-pointer" />
     </div>
     <template v-if="isOpen">
       <div class="w-1/2 h-screen fixed right-0 top-0 border-l-3 border-primary bg-white p-[16px] shadow-lg">
         <div class="flex justify-between mb-6">
           <RouterLink to="/">
-            <img class="w-[41px] h-[41px] hover:cursor-pointer" src="/src/assets/logo.svg">
+            <img class="w-[41px] h-[41px] hover:cursor-pointer" src="@/shared/assets/logo.svg">
           </RouterLink>
-          <img @click="isOpen = false" src="@/assets/icons/close.svg" class="w-[30px] h-[30px] cursor-pointer" />
+          <img @click="isOpen = false" src="@/shared/assets/icons/close.svg" class="w-[30px] h-[30px] cursor-pointer" />
         </div>
         <div>
           <RouterLink

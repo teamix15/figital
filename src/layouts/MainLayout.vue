@@ -1,10 +1,14 @@
 <template>
-  <div
-    class="flex flex-col w-full sm:w-[600px] md:w-[700px] lg:w-[1000px] xl:w-[1200px] 2xl:w-[1400px]"
-  >
+  <div class="flex flex-col min-h-screen w-full">
     <AppHeader />
-    <slot />
-    <AppFooter />
+
+    <main class="flex-grow">
+      <div class="min-h-[calc(100vh-headerHeight-footerHeight)]">
+        <slot />
+      </div>
+    </main>
+
+    <AppFooter class="mt-auto" />
   </div>
 </template>
 

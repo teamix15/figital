@@ -9,7 +9,7 @@
             <p>Speciality:</p>
             <p>Score:</p>
           </div>
-          <img class="w-[120px] h-[120px]" src="/src/assets/logo.svg" />
+          <img class="w-[120px] h-[120px]" src="@/shared/assets/logo.svg" />
         </div>
       </div>
 

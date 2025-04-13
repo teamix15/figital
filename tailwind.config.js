@@ -4,7 +4,11 @@ module.exports = {
     extend: {
       colors: {
         primary: 'var(--color-primary)',
-        background: 'var(--color-background)',
+        accent: 'var(--color-accent)',
+        accentOverlay: 'var(--color-accent-overlay)',
+        textWhite: 'var(--color-text-white)',
+        textBlack: 'var(--color-text-black)',
+        textWhiteSecondary: 'var(--color-text-white-secondary)',
       },
     },
   },
