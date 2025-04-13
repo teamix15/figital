@@ -1,8 +1,8 @@
 <template>
-  <div class="h-[190px] bg-primary p-[36px]">
-    <div class="hidden md:flex justify-between rounded w-full gap-2">
+  <div class="bg-primary p-[36px]">
+    <div class="hidden md:flex justify-between items-center rounded w-full gap-2">
       <RouterLink to="/">
-        <img src="@/shared/assets/logo.svg" />
+        <img src="@/shared/assets/logo.svg" class="h-[50px] w-[200px]"/>
       </RouterLink>
       <div class="flex items-center gap-2 h-[32px]">
         <RouterLink to="/units">

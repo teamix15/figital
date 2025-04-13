@@ -2,9 +2,9 @@
   <div class="px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 lg:px-10 lg:py-12">
     <div class="flex flex-col items-center max-w-[1800px] mx-auto">
       <div class="flex flex-col lg:flex-row w-full gap-6 md:gap-8 lg:gap-10">
-        <div class="lg:w-1/2 w-full flex flex-col gap-5 md:gap-6 lg:gap-8">
+        <div class="lg:w-1/2 w-full flex flex-col">
           <h1
-            class="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[56px] xl:text-[72px] leading-tight md:leading-snug lg:leading-[1.1] uppercase text-center sm:text-start"
+            class="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[56px] xl:text-[72px] lg:leading-[1.1] uppercase text-center sm:text-start leading-relaxed md:leading-loose pl-5 sm:pl-6 md:pl-8 lg:pl-10"
           >
             English for Design
           </h1>
@@ -41,11 +41,13 @@
       <div class="w-full mt-8 md:mt-12 lg:mt-16">
         <div class="flex flex-col gap-4 md:gap-6">
           <h2
-            class="uppercase font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[56px] text-center md:text-left"
+            class="uppercase font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[56px] text-center md:text-left pl-5 sm:pl-6 md:pl-8 lg:pl-10"
           >
             Why we?
           </h2>
-          <p class="font-bold text-sm sm:text-base md:text-lg lg:text-xl text-justify">
+          <p
+            class="font-bold text-sm sm:text-base md:text-lg lg:text-xl text-justify pl-5 sm:pl-6 md:pl-8 lg:pl-10"
+          >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
             incididunt ut labore et dolore magna aliqua.
           </p>
@@ -66,7 +68,7 @@
 
       <div class="w-full mt-10 md:mt-14 lg:mt-20">
         <h2
-          class="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[56px] uppercase mb-4 md:mb-6"
+          class="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[56px] uppercase mb-4 md:mb-6 pl-5 sm:pl-6 md:pl-8 lg:pl-10"
         >
           What we teach?
         </h2>
@@ -105,13 +107,12 @@
           <div class="flex justify-end mt-4 sm:mt-6">
             <CommonButton
               label="More..."
-              class="bg-white text-black hover:bg-gray-100 px-4 py-2 sm:px-6 sm:py-3 rounded-lg text-sm sm:text-base"
+              class="bg-white text-black hover:bg-gray-100 px-4 py-2 sm:px-6 sm:py-3 rounded-[40px] text-sm sm:text-base"
             />
           </div>
         </div>
       </div>
 
-      <!-- CTA Section -->
       <div
         class="flex flex-col sm:flex-row bg-primary rounded-3xl sm:rounded-[40px] h-auto sm:h-16 w-full mt-10 md:mt-14 lg:mt-20 overflow-hidden border-4 border-primary"
       >
