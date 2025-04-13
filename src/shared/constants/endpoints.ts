@@ -6,5 +6,7 @@ export const ENDPOINTS = {
     CHANGE_PASSWORD: '/auth/changePassword',
     PROFILE: '/auth/profile',
   },
-  DICTIONARY: "/dictionary"
+  DICTIONARY: '/dictionary',
+
+  WORDS: (count: number, unit: number) => `/words/${count}/unit/${unit}`,
 }

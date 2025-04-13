@@ -44,7 +44,7 @@
             <div class="mt-6 flex justify-end space-x-2">
               <button
                 @click="deleteWord(word._id)"
-                class="p-2 text-gray-500 hover:text-red-600 transition-colors"
+                class="p-2 text-gray-500 hover:text-accent transition-colors cursor-pointer"
                 title="Delete"
               >
                 <svg
