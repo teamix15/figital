@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { DictionaryService } from '@/services/dictionaryService'
-import type { DictionaryWord } from '@/shared/interfaces/entities'
+import type { DictionaryWord, DictionaryWordWithoutId } from '@/shared/interfaces/entities'
 
 interface DictionaryState {
   words: DictionaryWord[]
@@ -17,7 +17,7 @@ export const useDictionaryStore = defineStore('dictionary', {
 
   getters: {
     getWordById: (state) => (id: string) => {
-      return state.words.find((word) => word.id === id)
+      return state.words.find((word) => word._id === id)
     },
     sortedWords: (state) => {
       return [...state.words].sort((a, b) => a.english.localeCompare(b.english))
@@ -39,7 +39,7 @@ export const useDictionaryStore = defineStore('dictionary', {
       }
     },
 
-    async addWord(word: Omit<DictionaryWord, 'id'>) {
+    async addWord(word: Omit<DictionaryWordWithoutId, 'id'>) {
       this.isLoading = true
       try {
         const response = await DictionaryService.addWord(word)
@@ -60,7 +60,7 @@ export const useDictionaryStore = defineStore('dictionary', {
       this.isLoading = true
       try {
         await DictionaryService.deleteWord({ combinationId: wordId })
-        this.words = this.words.filter((word) => word.id !== wordId)
+        this.words = this.words.filter((word) => word._id !== wordId)
       } catch (error) {
         this.error = error instanceof Error ? error.message : 'Failed to delete word'
         console.error('Error deleting word:', error)

@@ -6,7 +6,7 @@ import axios, {
 } from 'axios'
 
 interface RequestConfig extends AxiosRequestConfig {
-  retry?: boolean
+  _retry?: boolean
   handle400?: boolean
   withoutToken?: boolean
 }

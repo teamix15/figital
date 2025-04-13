@@ -1,10 +1,14 @@
 import { ENDPOINTS } from '@/shared/constants/endpoints'
-import type { DictionaryWord, GetAllDictionaryWordsResponse } from '@/shared/interfaces/entities'
+import type {
+  DictionaryWord,
+  DictionaryWordWithoutId,
+  GetAllDictionaryWordsResponse,
+} from '@/shared/interfaces/entities'
 import api from '@/shared/utils/api'
 import type { AxiosResponse } from 'axios'
 
 export class DictionaryService {
-  static async addWord(data: DictionaryWord) {
+  static async addWord(data: DictionaryWordWithoutId): Promise<AxiosResponse> {
     return api({
       method: 'post',
       url: ENDPOINTS.DICTIONARY,

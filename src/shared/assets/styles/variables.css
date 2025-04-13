@@ -11,4 +11,8 @@
   --color-text-white: #ffffff;
   --color-text-black: #282828;
   --color-text-white-secondary: #ececec;
+
+
+  --header-height: 120px;
+  --footer-height: 120px;
 }

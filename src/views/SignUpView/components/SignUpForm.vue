@@ -5,7 +5,7 @@
         <h1 class="text-3xl font-bold text-gray-900 mb-2">SIGN UP ACCOUNT</h1>
       </div>
       <form class="mt-8 space-y-6" @submit.prevent="handleSubmit">
-        <div class="rounded-md shadow-sm space-y-4">
+        <div class="rounded-md space-y-4">
           <div class="grid grid-cols-2 gap-4">
             <div>
               <label for="name" class="block text-sm font-medium text-gray-700">NAME</label>
@@ -77,7 +77,6 @@
 import { reactive, ref } from 'vue'
 import { useUserStore } from '@/stores/userStore'
 import router from '@/router'
-import { toast } from 'vue3-toastify'
 
 const form = reactive({
   firstname: '',
@@ -94,12 +93,7 @@ const handleSubmit = async () => {
   error.value = null
   await userStore.registerUser(form)
 
-  console.log("userStore.error", userStore.error)
-
-  if (userStore?.error?.message) {
-    toast.error(userStore?.error?.message)
-  } else {
-    router.push('/')
-  }
+  console.log('userStore.error', userStore.error)
+  router.push('/')
 }
 </script>

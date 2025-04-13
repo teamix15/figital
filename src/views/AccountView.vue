@@ -1,11 +1,9 @@
 <template>
   <div class="container mx-auto px-4 sm:px-6 md:px-8 py-8 mb-[40px]">
-    <!-- Профиль -->
     <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-10 md:mb-14">
       <div class="order-2 md:order-1 flex-1">
         <h1 class="text-2xl sm:text-3xl md:text-4xl font-normal">Name Surname</h1>
         <div class="mt-4 space-y-2 text-sm sm:text-base">
-          <!-- Увеличенный mt и space-y -->
           <p class="text-gray-600">Speciality: <span class="text-gray-800">Designer</span></p>
           <p class="text-gray-600">Score: <span class="text-gray-800">85/100</span></p>
         </div>
@@ -13,7 +11,7 @@
       <div class="order-1 md:order-2">
         <img
           class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full object-cover border-2 border-primary shadow-md"
-          src="@/shared/assets/logo.svg"
+          src="@/shared/assets/base-avatar.svg"
           alt="Profile"
         />
       </div>
@@ -55,7 +53,6 @@
           </div>
         </div>
         <div class="mt-4 space-y-1 text-center">
-          <!-- Увеличенный mt и добавлен space-y -->
           <p class="font-bold text-lg text-gray-800">{{ skill.name }}</p>
           <p class="font-bold text-primary text-lg">{{ skill.score }}</p>
         </div>

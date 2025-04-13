@@ -27,6 +27,19 @@ export class AuthService {
     })
   }
 
+  static async refresh(data: { refresh_token: string }): Promise<
+    AxiosResponse<{
+      access_token: string
+    }>
+  > {
+    return api({
+      method: 'post',
+      url: ENDPOINTS.AUTH.REFRESH,
+      data,
+      withoutToken: true,
+    })
+  }
+
   static async getUserData(): Promise<
     AxiosResponse<{
       access_token: string

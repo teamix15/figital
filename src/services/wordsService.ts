@@ -10,7 +10,7 @@ export class WordsService {
   }: {
     unit: number
     count: number
-  }): Promise<AxiosResponse<{ words: DictionaryWord }>> {
+  }): Promise<AxiosResponse<{ words: DictionaryWord[] }>> {
     return api({
       method: 'get',
       url: ENDPOINTS.WORDS(count, unit),

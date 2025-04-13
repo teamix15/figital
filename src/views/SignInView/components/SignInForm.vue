@@ -5,7 +5,7 @@
         <h1 class="text-3xl font-bold text-gray-900 mb-2">SIGN IN ACCOUNT</h1>
       </div>
       <form class="mt-8 space-y-6" @submit.prevent="handleSubmit">
-        <div class="rounded-md shadow-sm space-y-4">
+        <div class="rounded-md space-y-4">
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700">EMAIL</label>
             <input
@@ -56,16 +56,15 @@ const form = reactive({
 const userStore = useUserStore()
 
 const isLoading = computed(() => userStore.isLoading)
-
-const error = ref(null)
+const error = computed(() => userStore.error)
 
 const handleSubmit = async () => {
   try {
-    error.value = null
     await userStore.loginUser(form)
     router.push('/')
+    toast.success('You have successfully logged in')
   } catch (err) {
-    toast.error('Registration failed. Please try again')
+    toast.error(error.value)
   }
 }
 </script>

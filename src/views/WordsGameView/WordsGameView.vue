@@ -42,18 +42,8 @@
       </div>
 
       <div class="flex justify-between">
-        <button
-          @click="resetGame"
-          class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition"
-        >
-          Reset
-        </button>
-        <button
-          @click="nextUnit"
-          class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-        >
-          Next Unit
-        </button>
+        <CommonButton @click="resetGame" variant="ghost" label="Reset" />
+        <CommonButton @click="nextUnit" label="Next pairs" />
       </div>
     </div>
   </div>
@@ -63,6 +53,8 @@
 import { ref, computed, onMounted } from 'vue'
 import { useWordsStore } from '@/stores/wordsStore'
 import type { DictionaryWord } from '@/shared/interfaces/entities'
+import { toast } from 'vue3-toastify'
+import CommonButton from '@/components/CommonButton.vue'
 
 interface GameCard {
   word: DictionaryWord
@@ -132,9 +124,7 @@ const flipCard = (index: number): void => {
       flippedCards.value = []
 
       if (matchedPairs.value === words.value.length) {
-        setTimeout(() => {
-          alert('Congratulations! You matched all pairs!')
-        }, 500)
+        toast.success('Congratulations! You matched all pairs!')
       }
     } else {
       setTimeout(() => {
@@ -151,7 +141,6 @@ const resetGame = (): void => {
 }
 
 const nextUnit = (): void => {
-  wordsStore.setUnit(wordsStore.currentUnit + 1)
   fetchWords()
 }
 

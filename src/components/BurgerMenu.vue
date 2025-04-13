@@ -23,6 +23,7 @@
             <img
               class="w-[120px] h-[60px] hover:cursor-pointer transition-transform duration-200 hover:scale-110"
               src="@/shared/assets/logo.svg"
+              @click="isOpen = false"
             />
           </RouterLink>
           <img
@@ -35,15 +36,18 @@
           <RouterLink
             class="flex items-center content-center uppercase h-[54px] text-[20px] color-[#111111] rounded-[40px] hover:bg-gray-100 px-4 transition-all duration-200"
             to="/units"
+            @click="isOpen = false"
             >Units</RouterLink
           >
           <RouterLink
             class="flex items-center content-center uppercase h-[54px] text-[20px] color-[#111111] rounded-[40px] hover:bg-gray-100 px-4 transition-all duration-200"
             to="/account"
+            @click="isOpen = false"
             >Account</RouterLink
           >
           <div
             class="flex items-center content-center uppercase h-[54px] text-[20px] color-[#111111] rounded-[40px] hover:bg-gray-100 px-4 transition-all duration-200"
+            @click="isOpen = false"
           >
             About us
           </div>

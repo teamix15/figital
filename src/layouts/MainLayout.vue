@@ -3,9 +3,7 @@
     <AppHeader />
 
     <main class="flex-grow">
-      <div class="min-h-[calc(100vh-headerHeight-footerHeight)]">
-        <slot />
-      </div>
+      <slot />
     </main>
 
     <AppFooter class="mt-auto" />
