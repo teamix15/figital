@@ -34,3 +34,13 @@ export interface GetAllDictionaryWordsResponse {
   __v: number
   combinations: DictionaryWord[]
 }
+
+// User
+export interface UserData {
+  sub: string
+  email: string
+  surname: string
+  firstname: string
+  iat: number
+  exp: number
+}

@@ -12,7 +12,20 @@
   --color-text-black: #282828;
   --color-text-white-secondary: #ececec;
 
-
   --header-height: 120px;
   --footer-height: 120px;
+
+  /* Units */
+  --color-unit-1: #e61468;
+  --color-unit-2: #e9b920;
+  --color-unit-3: #0d2e40;
+  --color-unit-4: #ec781b;
+  --color-unit-5: #8ed3f1;
+  --color-unit-6: #4a4797;
+  --color-unit-7: #47b59c;
+  --color-unit-8: #ef7d53;
+  --color-unit-9: #cedf91;
+  --color-unit-10: #f8c2b9;
+  --color-unit-11: #eb8973;
+  --color-unit-12: #312b57;
 }

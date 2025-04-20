@@ -1,5 +1,9 @@
 import { AuthService } from '@/services/authService'
-import type { LoginRequestParams, RegistrationRequestParams } from '@/shared/interfaces/entities'
+import type {
+  LoginRequestParams,
+  RegistrationRequestParams,
+  UserData,
+} from '@/shared/interfaces/entities'
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import router from '@/router'
@@ -11,6 +15,7 @@ export const useUserStore = defineStore('user', () => {
   const accessToken = ref<string | null>(localStorage.getItem('access'))
   const refreshToken = ref<string | null>(localStorage.getItem('refresh'))
   const tokenExpiry = ref<number | null>(Number(localStorage.getItem('token_expiry')))
+  const userData = ref<UserData | null>(null)
 
   const isAuthenticated = computed(() => {
     return !!accessToken.value && (tokenExpiry.value ?? 0) > Date.now()
@@ -20,7 +25,7 @@ export const useUserStore = defineStore('user', () => {
     accessToken.value = data.access_token
     refreshToken.value = data.refresh_token ?? null
 
-    tokenExpiry.value = Date.now() + 14400000
+    tokenExpiry.value = Date.now() + 14400000 // 4h
 
     localStorage.setItem('access', data.access_token)
     if (data.refresh_token) {
@@ -97,8 +102,24 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
+  const getUserData = async (): Promise<void> => {
+    try {
+      isLoading.value = true
+      error.value = null
+
+      const response = await AuthService.getUserData()
+      userData.value = response.data
+    } catch (err) {
+      error.value = err instanceof Error ? err.message : 'Failed to get userData'
+      throw error.value
+    } finally {
+      isLoading.value = false
+    }
+  }
+
   const logoutUser = (): void => {
     clearAuthData()
+    router.push('/sign-in')
   }
 
   const initializeAuth = async (): Promise<void> => {
@@ -113,7 +134,6 @@ export const useUserStore = defineStore('user', () => {
 
   const setupAxiosInterceptor = () => {
     api.interceptors.request.use(async (config) => {
-      // Если токен истек или истечет в ближайшие 5 минут - обновляем
       if (
         accessToken.value &&
         tokenExpiry.value &&
@@ -164,11 +184,13 @@ export const useUserStore = defineStore('user', () => {
     isLoading,
     isAuthenticated,
     accessToken,
+    userData,
     loginUser,
     registerUser,
     logoutUser,
     refreshAccessToken,
     initializeAuth,
     setupAxiosInterceptor,
+    getUserData,
   }
 })

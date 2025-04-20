@@ -1,5 +1,9 @@
 import { ENDPOINTS } from '@/shared/constants/endpoints'
-import type { LoginRequestParams, RegistrationRequestParams } from '@/shared/interfaces/entities'
+import type {
+  LoginRequestParams,
+  RegistrationRequestParams,
+  UserData,
+} from '@/shared/interfaces/entities'
 import api from '@/shared/utils/api'
 import type { AxiosResponse } from 'axios'
 
@@ -40,15 +44,10 @@ export class AuthService {
     })
   }
 
-  static async getUserData(): Promise<
-    AxiosResponse<{
-      access_token: string
-      refresh_token: string
-    }>
-  > {
+  static async getUserData(): Promise<AxiosResponse<UserData>> {
     return api({
-      method: 'post',
-      url: ENDPOINTS.AUTH.LOGIN,
+      method: 'get',
+      url: ENDPOINTS.AUTH.PROFILE,
       withoutToken: true,
     })
   }

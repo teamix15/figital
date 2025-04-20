@@ -2,7 +2,13 @@
   <div class="h-full flex items-center justify-center">
     <div class="max-w-md w-full space-y-8">
       <div class="text-center">
-        <h1 class="text-3xl font-bold text-gray-900 mb-2">SIGN UP ACCOUNT</h1>
+        <h1 className="text-[#282828] text-5xl font-bold mb-12 text-right uppercase">
+          sign
+          <br />
+          up
+          <br />
+          account
+        </h1>
       </div>
       <form class="mt-8 space-y-6" @submit.prevent="handleSubmit">
         <div class="rounded-md space-y-4">

@@ -63,6 +63,8 @@ interface GameCard {
   matched: boolean
 }
 
+const props = defineProps<{ unit: number }>()
+
 const wordsStore = useWordsStore()
 
 const cards = ref<GameCard[]>([])
@@ -145,6 +147,7 @@ const nextUnit = (): void => {
 }
 
 onMounted((): void => {
+  wordsStore.currentUnit = props.unit
   fetchWords()
 })
 </script>

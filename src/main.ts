@@ -9,6 +9,11 @@ import 'vue3-toastify/dist/index.css'
 import App from './App.vue'
 import router from './router'
 import { useUserStore } from '@/stores/userStore'
+import { createI18n } from 'vue-i18n'
+
+const i18n = createI18n({
+  // something vue-i18n options here ...
+})
 
 const app = createApp(App).use(Vue3Toastify, {
   autoClose: 3000,
@@ -17,6 +22,7 @@ const app = createApp(App).use(Vue3Toastify, {
 
 app.use(createPinia())
 app.use(router)
+app.use(i18n)
 
 const userStore = useUserStore()
 

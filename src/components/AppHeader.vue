@@ -4,17 +4,17 @@
       <RouterLink to="/">
         <img src="@/shared/assets/logo.svg" class="h-[50px] w-[200px]" />
       </RouterLink>
-      <div class="flex items-center gap-2 h-[32px]">
+      <div class="flex items-center gap-2 max-h-[32px]">
         <RouterLink to="/units">
           <div label="units" variant="ghost"></div>
         </RouterLink>
         <RouterLink to="/units">
-          <CommonButton label="Units" variant="ghost" />
+          <CommonButton label="Units" variant="ghost" class="max-h-[32px]" />
         </RouterLink>
         <RouterLink to="/account">
-          <CommonButton label="account" variant="ghost" />
+          <CommonButton label="account" variant="ghost" class="max-h-[32px]" />
         </RouterLink>
-        <CommonButton label="about us" variant="ghost" />
+        <CommonButton label="about us" variant="ghost" class="max-h-[32px]" />
         <RouterLink to="/dictionary">
           <img src="@/shared/assets/icons/dictionary.svg" />
         </RouterLink>
