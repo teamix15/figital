@@ -1,7 +1,6 @@
 <template>
   <main class="max-w-6xl mx-auto p-12">
     <div class="flex flex-col items-center gap-8">
-      <!-- Верхний ряд английских слов -->
       <div class="grid grid-cols-2 gap-8 w-full">
         <div
           v-for="(option, index) in options.slice(0, 2)"
@@ -19,12 +18,10 @@
         </div>
       </div>
 
-      <!-- Центральное русское слово -->
       <div class="text-center my-8">
         <h2 class="text-[#282828] text-5xl font-bold">{{ currentWord?.russian }}</h2>
       </div>
 
-      <!-- Нижний ряд английских слов -->
       <div class="grid grid-cols-2 gap-8 w-full">
         <div
           v-for="(option, index) in options.slice(2, 4)"
@@ -121,7 +118,9 @@ const selectOption = async (index: number) => {
 }
 
 onMounted(async () => {
-  wordsStore.setUnit(props.unit)
+  if (props.unit) {
+    wordsStore.setUnit(props.unit)
+  }
   await wordsStore.fetchWords()
   setupRound()
 })

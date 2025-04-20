@@ -30,8 +30,8 @@
             {{ userData?.firstname }} {{ userData?.surname }}
           </h2>
           <div class="mt-4 text-sm">
-            <p>Speciality: {{ userData?.speciality || 'NA' }}</p>
-            <p>Score: {{ userData?.score || 'NA' }}</p>
+            <p>Speciality: 'NA'</p>
+            <p>Score: 'NA'</p>
           </div>
         </div>
       </div>
