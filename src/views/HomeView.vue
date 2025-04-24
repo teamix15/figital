@@ -1,7 +1,7 @@
 <template>
   <main className="min-h-screen flex flex-col">
     <section className="bg-[#7080e7] py-12 px-8">
-      <div className="max-w-7xl mx-auto flex lg:flex-col">
+      <div className="max-w-7xl mx-auto flex">
         <div className="w-1/2">
           <h1 className="text-[#282828] text-7xl font-bold leading-tight">
             ENGLISH
@@ -17,15 +17,11 @@
           </p>
         </div>
         <div className="w-1/2 relative">
-          <div className="absolute inset-0 rounded-[40px] overflow-hidden">
-            <img
-              src="@/shared/assets/home-view-main.svg"
-              alt="Library illustration"
-              width="{500}"
-              height="{400}"
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <img
+            src="@/shared/assets/home-view-main.svg"
+            alt="Library illustration"
+            className="w-full h-[500px] object-cover  rounded-[48px]"
+          />
         </div>
       </div>
     </section>

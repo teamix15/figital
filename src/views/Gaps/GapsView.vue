@@ -29,8 +29,8 @@
         <p className="mb-4">
           Looking at the interviews, you can now understand the actual needs that people are trying
           to
-          <span className="font-bold">1_</span> with certain activities. One way to do that is to{"
-          "} <span className="font-bold">2_</span> the verbs or activities that the people mentioned
+          <span className="font-bold">1_</span> with certain activities. One way to do that is to
+          <span className="font-bold">2_</span> the verbs or activities that the people mentioned
           when talking about their problems: like going for a walk, meeting old friends for tea, or
           simply going <span className="font-bold">3_</span> around the corner store. You might
           realize it&apos;s not so much about going out, but more about staying in touch. After your
