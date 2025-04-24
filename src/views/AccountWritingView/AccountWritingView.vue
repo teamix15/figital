@@ -1,12 +1,8 @@
 <template>
   <AccountWorkingLayout :unitNumber="unit">
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <RouterLink :to="{ name: ROUTE_NAMES.FOUR_CARD_WORDS_GAME, params: { unit } }">
-        <UnitGamePrctiseCard title="Four cards words game" :unit="unit" />
-      </RouterLink>
-
-      <RouterLink :to="{ name: ROUTE_NAMES.WORDS_GAME, params: { unit } }">
-        <UnitGamePrctiseCard title="Six cards words game" :unit="unit" />
+      <RouterLink :to="{ name: ROUTE_NAMES.GAPS, params: { unit } }">
+        <UnitGamePrctiseCard title="Gaps" :unit="unit" />
       </RouterLink>
     </div>
   </AccountWorkingLayout>

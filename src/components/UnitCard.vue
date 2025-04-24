@@ -18,7 +18,9 @@
     </div>
 
     <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
-      <SkillCard title="Writing" :unitNumber="unitNumber" backgroundColor="#7BB0EC" />
+      <RouterLink :to="{ name: ROUTE_NAMES.WRITING, params: { unit: unitNumber } }">
+        <SkillCard title="Writing" :unitNumber="unitNumber" backgroundColor="#7BB0EC" />
+      </RouterLink>
 
       <SkillCard title="Reading" :unitNumber="unitNumber" backgroundColor="#446942" />
 

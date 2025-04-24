@@ -9,4 +9,6 @@ export const ENDPOINTS = {
   DICTIONARY: '/dictionary',
 
   WORDS: (count: number, unit: number) => `/words/${count}/unit/${unit}`,
+
+  GAPS: (count: number, unit: number) => `/api/v1/gaps/${count}/unit/${unit}`
 }

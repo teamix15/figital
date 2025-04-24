@@ -97,7 +97,7 @@ const selectOption = async (index: number) => {
     }, 1000)
   } else {
     showCorrect.value = true
-    toast.error(`Неверно! Правильный ответ: ${currentWord.value?.english}`)
+    toast.error(`Wrong! Correct: ${currentWord.value?.english}`)
 
     if (currentWord.value) {
       try {

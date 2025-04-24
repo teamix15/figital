@@ -32,7 +32,9 @@
             </div>
 
             <div class="flex gap-3 pb-2">
-              <CommonSelector title="Writing" />
+              <RouterLink :to="{ name: ROUTE_NAMES.WRITING, params: { unit: unitNumber } }">
+                <CommonSelector title="Writing" />
+              </RouterLink>
 
               <CommonSelector title="Reading" color="#446942" />
 
@@ -41,11 +43,13 @@
               >
                 Listening
               </button>
-              <button
-                class="bg-[#fc4994] text-white rounded-full px-6 py-2 font-medium hover-effect"
-              >
-                Games
-              </button>
+              <RouterLink :to="{ name: ROUTE_NAMES.GAMES, params: { unit: unitNumber } }">
+                <button
+                  class="bg-[#fc4994] text-white rounded-full px-6 py-2 font-medium hover-effect"
+                >
+                  Games
+                </button>
+              </RouterLink>
             </div>
           </div>
         </div>
@@ -60,9 +64,11 @@
 
 <script setup lang="ts">
 import CommonSelector from '@/components/CommonSelector.vue'
+import { ROUTE_NAMES } from '@/router'
 import { useUserStore } from '@/stores/userStore'
 import { computed } from 'vue'
 
 const userStore = useUserStore()
 const userData = computed(() => userStore.userData)
+defineProps({ unitNumber: Number })
 </script>
