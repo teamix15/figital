@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col md:flex-row">
     <img
-      class="hidden xl:flex md:w-[750px] h-full object-cover object-center"
+      class="hidden xl:flex md:w-[750px] h-[100vh] object-cover object-center"
       src="@/shared/assets/login.svg"
       alt="login"
     />

@@ -1,6 +1,6 @@
 <template>
   <button
-    class="flex items-center justify-center text-center uppercase h-14 rounded-[40px] p-4 transition-all duration-300 transform group cursor-pointer"
+    class="flex items-center justify-center text-center uppercase h-14 rounded-[40px] p-4 hover-effect"
     :class="{
       'bg-gradient-to-r from-primary/90 to-primary/70 text-white shadow-md hover:shadow-lg hover:scale-[1.03] active:scale-[0.98]':
         variant !== 'ghost',

@@ -1,7 +1,7 @@
 <template>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     <div
-      class="rounded-3xl p-6 text-white relative cursor-pointer z-20 shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+      class="rounded-3xl p-6 text-white relative cursor-pointer z-20 hover-effect"
       :style="{ backgroundColor: `var(--color-unit-${unitNumber})` }"
     >
       <h3 class="text-xl font-medium">YOUR LEVEL</h3>

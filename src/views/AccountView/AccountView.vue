@@ -32,6 +32,7 @@
           <div class="mt-4 text-sm">
             <p>Speciality: 'NA'</p>
             <p>Score: 'NA'</p>
+            <CommonButton label="Log out" @click="userStore.logoutUser" class="h-[20px] mt-2" />
           </div>
         </div>
       </div>
@@ -43,7 +44,7 @@
       </div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-6" style="margin-top: -40px">
+    <div class="max-w-7xl mx-auto px-6 p-[16px]" style="margin-top: -40px">
       <UnitCard :unit-number="1" />
     </div>
   </div>
@@ -53,6 +54,7 @@
 import { computed } from 'vue'
 import { useUserStore } from '@/stores/userStore'
 import UnitCard from '@/components/UnitCard.vue'
+import CommonButton from '@/components/CommonButton.vue'
 
 const userStore = useUserStore()
 const userData = computed(() => userStore.userData)

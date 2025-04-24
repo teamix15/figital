@@ -15,10 +15,10 @@
           <CommonButton label="account" variant="ghost" class="max-h-[32px]" />
         </RouterLink>
         <CommonButton label="about us" variant="ghost" class="max-h-[32px]" />
-        <RouterLink to="/dictionary">
+        <RouterLink to="/dictionary" v-if="isAuthorizedUser">
           <img src="@/shared/assets/icons/dictionary.svg" />
         </RouterLink>
-        <RouterLink to="/account">
+        <RouterLink to="/account" v-if="isAuthorizedUser">
           <img
             class="w-[41px] h-[41px] hover:cursor-pointer"
             src="@/shared/assets/base-avatar.svg"
@@ -35,4 +35,7 @@
 <script setup lang="ts">
 import CommonButton from '@/components/CommonButton.vue'
 import BurgerMenu from './BurgerMenu.vue'
+import { useAuth } from '@/composables/useAuth'
+
+const { isAuthorized: isAuthorizedUser } = useAuth()
 </script>

@@ -6,7 +6,7 @@ import type {
 } from '@/shared/interfaces/entities'
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import router from '@/router'
+import router, { PATHS } from '@/router'
 import api from '@/shared/utils/api'
 
 export const useUserStore = defineStore('user', () => {
@@ -43,7 +43,7 @@ export const useUserStore = defineStore('user', () => {
     localStorage.removeItem('refresh')
     localStorage.removeItem('token_expiry')
 
-    router.push('/login')
+    router.push(PATHS.LOGIN)
   }
 
   const refreshAccessToken = async (): Promise<string> => {

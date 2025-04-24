@@ -19,7 +19,7 @@
         <div className="w-1/2 relative">
           <div className="absolute inset-0 rounded-[40px] overflow-hidden">
             <img
-              src="/src/shared/assets/home-view-main.svg"
+              src="@/shared/assets/home-view-main.svg"
               alt="Library illustration"
               width="{500}"
               height="{400}"

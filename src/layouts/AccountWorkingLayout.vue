@@ -17,8 +17,8 @@
               <div
                 class="w-32 h-32 rounded-full overflow-hidden border-4 border-white bg-[#d9d9d9]"
               >
-              <img src="@/shared/assets/base-avatar.svg" alt="Avatar" class="h-full w-full"/>
-            </div>
+                <img src="@/shared/assets/base-avatar.svg" alt="Avatar" class="h-full w-full" />
+              </div>
 
               <div class="text-white">
                 <h2 class="text-6xl font-bold tracking-wide">
@@ -32,22 +32,18 @@
             </div>
 
             <div class="flex gap-3 pb-2">
+              <CommonSelector title="Writing" />
+
+              <CommonSelector title="Reading" color="#446942" />
+
               <button
-                class="bg-[#7bb0ec] text-white rounded-full px-6 py-2 font-medium flex items-center"
+                class="bg-[#f29c47] text-white rounded-full px-6 py-2 font-medium hover-effect"
               >
-                Writing
-                <ChevronDown class="ml-2 h-4 w-4" />
-              </button>
-              <button
-                class="bg-[#446942] text-white rounded-full px-6 py-2 font-medium flex items-center"
-              >
-                Reading
-                <Check class="ml-2 h-4 w-4" />
-              </button>
-              <button class="bg-[#f29c47] text-white rounded-full px-6 py-2 font-medium">
                 Listening
               </button>
-              <button class="bg-[#fc4994] text-white rounded-full px-6 py-2 font-medium">
+              <button
+                class="bg-[#fc4994] text-white rounded-full px-6 py-2 font-medium hover-effect"
+              >
                 Games
               </button>
             </div>
@@ -63,6 +59,7 @@
 </template>
 
 <script setup lang="ts">
+import CommonSelector from '@/components/CommonSelector.vue'
 import { useUserStore } from '@/stores/userStore'
 import { computed } from 'vue'
 
