@@ -35,7 +35,6 @@
 <script setup lang="ts">
 import CommonButton from '@/components/CommonButton.vue'
 import BurgerMenu from './BurgerMenu.vue'
-import { useAuth } from '@/composables/useAuth'
 import { useUserStore } from '@/stores/userStore'
 import { computed } from 'vue'
 
