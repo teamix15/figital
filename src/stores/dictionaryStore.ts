@@ -43,10 +43,11 @@ export const useDictionaryStore = defineStore('dictionary', {
       this.isLoading = true
       try {
         const response = await DictionaryService.addWord(word)
-        if (response.data) {
-          this.words.push(response.data)
-          return response.data
-        }
+        //TODO: make work with store
+        // if (response.data) {
+        //   this.words.push(response.data)
+        //   return response.data
+        // }
       } catch (error) {
         this.error = error instanceof Error ? error.message : 'Failed to add word'
         console.error('Error adding word:', error)
