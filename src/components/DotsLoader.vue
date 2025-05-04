@@ -7,14 +7,14 @@
 </template>
 
 <script setup lang="ts">
-defineProps({
-  isLoading: Boolean,
-})
+const { isLoading = true } = defineProps<{ isLoading?: boolean }>()
 </script>
 
 <style scoped>
 .dots-loader {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 8px;
 }
 

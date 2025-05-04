@@ -59,14 +59,14 @@
           </div>
         </div>
 
-        <div>
-          <button
-            type="submit"
-            class="w-full flex justify-center cursor-pointer py-2 px-4 border border-transparent rounded-[40px] shadow-sm text-sm font-medium text-white bg-accent focus:outline-none focus:ring-2 focus:ring-offset-2"
-          >
-            SIGN UP
-          </button>
-        </div>
+        <button
+          type="submit"
+          class="w-full flex justify-center py-2 px-4 border border-transparent rounded-[40px] shadow-sm text-sm font-medium text-white bg-accent focus:outline-none focus:ring-2 focus:ring-offset-2 hover-effect h-[40px]"
+        >
+          <DotsLoader v-if="isLoading" />
+
+          <span v-if="!isLoading" class="uppercase">sign up</span>
+        </button>
       </form>
 
       <div class="text-center text-sm">
@@ -80,9 +80,10 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import { useUserStore } from '@/stores/userStore'
 import router from '@/router'
+import DotsLoader from '@/components/DotsLoader.vue'
 
 const form = reactive({
   firstname: '',
@@ -92,6 +93,8 @@ const form = reactive({
 })
 
 const userStore = useUserStore()
+
+const isLoading = computed(() => userStore.isLoading)
 
 const error = ref(null)
 

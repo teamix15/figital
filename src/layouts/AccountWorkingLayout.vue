@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col min-h-screen">
-    <main class="flex-grow">
+    <main class="flex-grow h-full">
       <div class="relative h-80">
         <div class="absolute inset-0 overflow-hidden bg-black/30">
           <img

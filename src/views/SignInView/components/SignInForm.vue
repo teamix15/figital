@@ -1,7 +1,13 @@
 <template>
   <div class="h-full min-w-full flex items-center justify-center">
     <div class="max-w-md w-full space-y-8">
-      <div class="text-center">
+      <div class="flex justify-between text-center">
+        <RouterLink :to="PATHS.SIGN_UP">
+          <div class="flex font-medium text-indigo-600 hover:text-indigo-500 ml-1 gap-1">
+            <ArrowLeftIcon />
+            Back
+          </div>
+        </RouterLink>
         <h1 className="text-[#282828] text-5xl font-bold mb-12 text-right uppercase">
           sign
           <br />
@@ -38,9 +44,11 @@
         <div>
           <button
             type="submit"
-            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-[40px] shadow-sm text-sm font-medium text-white bg-accent focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer"
+            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-[40px] shadow-sm text-sm font-medium text-white bg-accent focus:outline-none focus:ring-2 focus:ring-offset-2 hover-effect h-[40px]"
           >
-            SIGN IN
+            <DotsLoader v-if="isLoading" />
+
+            <span v-if="!isLoading" class="uppercase">sign in</span>
           </button>
         </div>
       </form>
@@ -49,10 +57,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, ref } from 'vue'
+import { computed, reactive } from 'vue'
 import { useUserStore } from '@/stores/userStore'
-import router from '@/router'
+import router, { PATHS } from '@/router'
 import { toast } from 'vue3-toastify'
+import DotsLoader from '@/components/DotsLoader.vue'
+import ArrowLeftIcon from '@/components/icons/ArrowLeftIcon.vue'
 
 const form = reactive({
   email: '',

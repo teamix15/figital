@@ -12,9 +12,6 @@
   --color-text-black: #282828;
   --color-text-white-secondary: #ececec;
 
-  --header-height: 120px;
-  --footer-height: 120px;
-
   /* Units */
   --color-unit-1: #e61468;
   --color-unit-2: #e9b920;
@@ -28,4 +25,8 @@
   --color-unit-10: #f8c2b9;
   --color-unit-11: #eb8973;
   --color-unit-12: #312b57;
+
+  /* Height */
+  --header-height: 128px;
+  --footer-height: 128px;
 }

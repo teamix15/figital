@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-primary p-[36px]">
+  <header class="header bg-primary p-[36px]">
     <div class="hidden md:flex justify-between items-center rounded w-full gap-2">
       <RouterLink to="/">
         <img src="@/shared/assets/logo.svg" class="h-[50px] w-[200px]" />
@@ -29,7 +29,7 @@
     <div class="flex md:hidden justify-end items-center gap-2">
       <BurgerMenu />
     </div>
-  </div>
+  </header>
 </template>
 
 <script setup lang="ts">

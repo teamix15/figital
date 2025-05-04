@@ -1,5 +1,5 @@
 <template>
-  <footer class="flex justify-between bg-primary p-[36px]">
+  <footer class="footer flex justify-between bg-primary p-[36px]">
     <div class="flex">
       <RouterLink to="/">
         <img src="@/shared/assets/logo.svg" class="h-[50px] w-[200px]" />
