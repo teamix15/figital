@@ -44,3 +44,13 @@ export interface UserData {
   iat: number
   exp: number
 }
+
+// Gaps
+export interface GapsResponse {
+  sentences: GapsItem[]
+}
+
+export interface GapsItem {
+  text: string
+  answers: string[]
+}

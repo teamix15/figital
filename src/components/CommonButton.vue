@@ -9,10 +9,7 @@
     }"
   >
     {{ label }}
-    <span
-      v-if="variant !== 'ghost'"
-      class="ml-2 group-hover:translate-x-1 transition-transform duration-300"
-    >
+    <span v-if="withArrow" class="ml-2 group-hover:translate-x-1 transition-transform duration-300">
       →
     </span>
   </button>
@@ -22,6 +19,7 @@
 interface Props {
   label: string
   variant?: 'ghost'
+  withArrow?: false
 }
 
 defineProps<Props>()

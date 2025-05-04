@@ -120,7 +120,3 @@ onBeforeMount(() => {
   dictionaryStore.fetchAllWords()
 })
 </script>
-
-<style scoped>
-/* Дополнительные стили при необходимости */
-</style>

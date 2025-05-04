@@ -9,6 +9,9 @@ export const ENDPOINTS = {
   DICTIONARY: '/dictionary',
 
   WORDS: (count: number, unit: number) => `/words/${count}/unit/${unit}`,
+  WORDS_UPLOAD: (unit: number) => `/words/upload/${unit}`,
 
-  GAPS: (count: number, unit: number) => `/api/v1/gaps/${count}/unit/${unit}`
+  GAPS: (count: number, unit: number) => `/gaps/${count}/unit/${unit}`,
+  UPLOAD_GAPS: (unit: number) => `/gaps/upload/${unit}`,
+  DOWNLOAD_GAPS_FILE: (unit: number) => `/gaps/download/${unit}`,
 }
