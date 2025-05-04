@@ -60,7 +60,6 @@
 import { computed, reactive } from 'vue'
 import { useUserStore } from '@/stores/userStore'
 import router, { PATHS } from '@/router'
-import { toast } from 'vue3-toastify'
 import DotsLoader from '@/components/DotsLoader.vue'
 import ArrowLeftIcon from '@/components/icons/ArrowLeftIcon.vue'
 
@@ -72,15 +71,9 @@ const form = reactive({
 const userStore = useUserStore()
 
 const isLoading = computed(() => userStore.isLoading)
-const error = computed(() => userStore.error)
 
 const handleSubmit = async () => {
-  try {
-    await userStore.loginUser(form)
-    router.push('/')
-    toast.success('You have successfully logged in')
-  } catch (err) {
-    toast.error(error.value)
-  }
+  await userStore.loginUser(form)
+  router.push('/')
 }
 </script>

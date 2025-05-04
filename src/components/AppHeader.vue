@@ -36,6 +36,10 @@
 import CommonButton from '@/components/CommonButton.vue'
 import BurgerMenu from './BurgerMenu.vue'
 import { useAuth } from '@/composables/useAuth'
+import { useUserStore } from '@/stores/userStore'
+import { computed } from 'vue'
 
-const { isAuthorized: isAuthorizedUser } = useAuth()
+const userStore = useUserStore()
+
+const isAuthorizedUser = computed(() => userStore.isAuthenticated)
 </script>

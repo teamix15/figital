@@ -119,7 +119,7 @@ export const useUserStore = defineStore('user', () => {
 
   const logoutUser = (): void => {
     clearAuthData()
-    router.push('/sign-in')
+    router.push(PATHS.SIGN_UP)
   }
 
   const initializeAuth = async (): Promise<void> => {
