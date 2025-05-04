@@ -1,6 +1,6 @@
 <template>
   <AccountWorkingLayout :unitNumber="unit">
-    <main class="flex-1 bg-white pt-[58px]">
+    <div class="flex-1 bg-white pt-[58px]">
       <h1 class="text-2xl font-bold mb-8">1. EXERCISE FILL IN THE GAPS</h1>
       <GapsItem
         v-for="(sentence, index) in sentences"
@@ -10,6 +10,8 @@
         @update-stats="handleStatsUpdate"
       />
 
+      <DotsLoader v-if="isLoading"/>
+
       <div v-if="showStatistics" class="mt-8 p-4 bg-gray-50 rounded-lg">
         <h2 class="text-xl font-bold mb-4">Exercise Results</h2>
         <div class="grid grid-cols-2 gap-4">
@@ -18,7 +20,7 @@
         </div>
         <div class="mt-4">Success rate: {{ successRate }}%</div>
       </div>
-    </main>
+    </div>
   </AccountWorkingLayout>
 </template>
 
@@ -27,10 +29,12 @@ import AccountWorkingLayout from '@/layouts/AccountWorkingLayout.vue'
 import { useGapsStore } from '@/stores/gapsStore'
 import { computed, onBeforeMount, ref, watch } from 'vue'
 import GapsItem from './components/GapsItem.vue'
+import DotsLoader from '@/components/DotsLoader.vue';
 
 const props = defineProps<{ unit: number }>()
 
 const gapsStore = useGapsStore()
+const isLoading = computed(() => gapsStore.isLoading)
 const sentences = computed(() => gapsStore.sentences)
 
 onBeforeMount(() => {
