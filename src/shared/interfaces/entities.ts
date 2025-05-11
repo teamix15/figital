@@ -1,5 +1,20 @@
 import type { USER_ROLES } from '../enums/common'
 
+export interface PaginatedResponse<T> {
+  data: T[]
+  page: number
+  pageSize: number
+  totalCount: number
+  totalPages: number
+}
+
+export interface Pagination {
+  page: number
+  pageSize: number
+  totalCount: number
+  totalPages: number
+}
+
 export interface ErrorResponse {
   message: string[]
   error: string
@@ -30,11 +45,10 @@ export interface DictionaryWordWithoutId {
   russian: string
 }
 
-export interface GetAllDictionaryWordsResponse {
-  _id: string
-  userId: string
-  __v: number
-  data: DictionaryWord[]
+export interface GetAllDictionaryWordsParams {
+  page?: number
+  limit?: number
+  filter?: string
 }
 
 // User

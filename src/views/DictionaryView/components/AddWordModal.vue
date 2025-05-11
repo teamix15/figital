@@ -71,7 +71,7 @@ interface FormData {
   russian: string
 }
 
-const emit = defineEmits(['close'])
+const emit = defineEmits(['close', 'fetch-words'])
 
 const dictionaryStore = useDictionaryStore()
 const isOpen = ref(true)
@@ -93,8 +93,8 @@ const handleSubmit = async () => {
   isLoading.value = true
 
   try {
-    await dictionaryStore.addWord(form.value)
-    await dictionaryStore.fetchAllWords()
+    dictionaryStore.addWord(form.value)
+    emit('fetch-words')
     closeModal()
   } catch (err) {
     error.value = dictionaryStore.error || 'Failed to add word'

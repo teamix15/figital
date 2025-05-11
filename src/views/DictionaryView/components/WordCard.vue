@@ -15,7 +15,7 @@
         class="p-2 text-gray-500 hover:text-accent transition-colors cursor-pointer h-[36px]"
         title="Delete"
       >
-        <TrashIcon v-if="!isDeleteWordLoading"/>
+        <TrashIcon v-if="!isDeleteWordLoading" />
 
         <DotsLoader v-if="isDeleteWordLoading" />
       </button>
@@ -33,6 +33,7 @@ import { ref } from 'vue'
 import type { DictionaryWord } from '@/shared/interfaces/entities'
 
 const { word } = defineProps<{ word: DictionaryWord }>()
+const emit = defineEmits(['fetch-words'])
 
 const dictionaryStore = useDictionaryStore()
 
@@ -43,7 +44,7 @@ const deleteWord = async (id: string) => {
   try {
     isDeleteWordLoading.value = true
     await DictionaryService.deleteWord({ combinationId: id })
-    // await dictionaryStore.fetchAllWords()
+    await emit('fetch-words')
   } catch (error) {
     toast.error('Error deleting word')
   } finally {
