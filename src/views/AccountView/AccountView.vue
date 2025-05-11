@@ -51,11 +51,17 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useUserStore } from '@/stores/userStore'
 import UnitCard from '@/components/UnitCard.vue'
 import CommonButton from '@/components/CommonButton.vue'
 
 const userStore = useUserStore()
 const userData = computed(() => userStore.userData)
+
+onMounted(() => {
+  if (!userData.value) {
+    userStore.getUserData()
+  }
+})
 </script>

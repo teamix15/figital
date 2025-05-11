@@ -1,9 +1,15 @@
 import { defineStore } from 'pinia'
 import { DictionaryService } from '@/services/dictionaryService'
-import type { DictionaryWord, DictionaryWordWithoutId } from '@/shared/interfaces/entities'
+import type {
+  DictionaryWord,
+  DictionaryWordWithoutId,
+  GetAllDictionaryWordsParams,
+  Pagination,
+} from '@/shared/interfaces/entities'
 
 interface DictionaryState {
   words: DictionaryWord[]
+  pagination: Pagination | null
   isLoading: boolean
   error: string | null
 }
@@ -11,6 +17,7 @@ interface DictionaryState {
 export const useDictionaryStore = defineStore('dictionary', {
   state: (): DictionaryState => ({
     words: [],
+    pagination: null,
     isLoading: false,
     error: null,
   }),
@@ -25,12 +32,14 @@ export const useDictionaryStore = defineStore('dictionary', {
   },
 
   actions: {
-    async fetchAllWords() {
+    async fetchAllWords(params: GetAllDictionaryWordsParams) {
       this.isLoading = true
       this.error = null
       try {
-        const response = await DictionaryService.getAllDictionaryWords()
-        this.words = response.data.combinations || []
+        const response = await DictionaryService.getAllDictionaryWords(params)
+        const { data, ...pagination } = response.data
+        this.words = data || []
+        this.pagination = pagination
       } catch (error) {
         this.error = error instanceof Error ? error.message : 'Failed to fetch words'
         console.error('Error fetching words:', error)

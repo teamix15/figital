@@ -23,13 +23,15 @@
             <input
               type="text"
               placeholder="SEARCH"
+              v-model="searchQuery"
               class="bg-white rounded-full pl-4 pr-10 py-2 w-40 focus:outline-none focus:ring-2 focus:ring-[#fc4994]"
+              @keyup.enter="handleSearch"
             />
-            <SearchIcon class="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4" />
+            <SearchIcon
+              class="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 cursor-pointer"
+              @click="handleSearch"
+            />
           </div>
-          <button class="ml-2 bg-[#fc4994] p-2 rounded-full">
-            <FilterIcon class="w-4 h-4 text-white" />
-          </button>
         </div>
       </div>
 
@@ -44,17 +46,27 @@
 
 <script setup lang="ts">
 import { useDictionaryStore } from '@/stores/dictionaryStore'
-import { computed, onBeforeMount } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import DictionaryWithWords from './components/DictionaryWithWords.vue'
 import DotsLoader from '@/components/DotsLoader.vue'
 import EmptyDictionary from './components/EmptyDictionary.vue'
+import { COMMON_PAGE_SIZE } from '@/shared/constants/common'
+import SearchIcon from '@/components/icons/SearchIcon.vue'
 
 const dictionaryStore = useDictionaryStore()
 
+const searchQuery = ref('')
 const words = computed(() => dictionaryStore.words)
 const isLoading = computed(() => dictionaryStore.isLoading)
 
-onBeforeMount(() => {
-  dictionaryStore.fetchAllWords()
+const handleSearch = async () => {
+  await dictionaryStore.fetchAllWords({
+    limit: COMMON_PAGE_SIZE,
+    filter: searchQuery.value.trim(),
+  })
+}
+
+onMounted(() => {
+  dictionaryStore.fetchAllWords({ limit: COMMON_PAGE_SIZE })
 })
 </script>

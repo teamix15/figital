@@ -2,7 +2,8 @@ import { ENDPOINTS } from '@/shared/constants/endpoints'
 import type {
   DictionaryWord,
   DictionaryWordWithoutId,
-  GetAllDictionaryWordsResponse,
+  GetAllDictionaryWordsParams,
+  PaginatedResponse,
 } from '@/shared/interfaces/entities'
 import api from '@/shared/utils/api'
 import type { AxiosResponse } from 'axios'
@@ -24,10 +25,13 @@ export class DictionaryService {
     })
   }
 
-  static async getAllDictionaryWords(): Promise<AxiosResponse<GetAllDictionaryWordsResponse>> {
+  static async getAllDictionaryWords(
+    params: GetAllDictionaryWordsParams,
+  ): Promise<AxiosResponse<PaginatedResponse<DictionaryWord>>> {
     return api({
       method: 'get',
       url: ENDPOINTS.DICTIONARY,
+      params,
     })
   }
 }

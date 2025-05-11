@@ -23,15 +23,28 @@
         </div>
       </div>
     </div>
-    <AddWordModal v-if="showAddWordModal" @close="closeAddWordModal" />
+    <AddWordModal
+      v-if="showAddWordModal"
+      @close="closeAddWordModal"
+      @fetch-words="handleFetchWords"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import AddWordModal from './AddWordModal.vue'
+import PlusIcon from '@/components/icons/PlusIcon.vue'
+import { useDictionaryStore } from '@/stores/dictionaryStore'
+import { COMMON_PAGE_SIZE } from '@/shared/constants/common'
+
+const dictionaryStore = useDictionaryStore()
 
 const showAddWordModal = ref(false)
+
+const handleFetchWords = async () => {
+  await dictionaryStore.fetchAllWords({ limit: COMMON_PAGE_SIZE })
+}
 
 const openAddWordModal = () => {
   showAddWordModal.value = true
@@ -40,7 +53,4 @@ const openAddWordModal = () => {
 const closeAddWordModal = () => {
   showAddWordModal.value = false
 }
-
-const wordOfTheDay = ref('word')
-
 </script>
