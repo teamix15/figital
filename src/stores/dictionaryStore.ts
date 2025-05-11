@@ -30,7 +30,7 @@ export const useDictionaryStore = defineStore('dictionary', {
       this.error = null
       try {
         const response = await DictionaryService.getAllDictionaryWords()
-        this.words = response.data.combinations || []
+        this.words = response.data.data || []
       } catch (error) {
         this.error = error instanceof Error ? error.message : 'Failed to fetch words'
         console.error('Error fetching words:', error)

@@ -34,7 +34,7 @@ export interface GetAllDictionaryWordsResponse {
   _id: string
   userId: string
   __v: number
-  combinations: DictionaryWord[]
+  data: DictionaryWord[]
 }
 
 // User

@@ -44,7 +44,7 @@
 
 <script setup lang="ts">
 import { useDictionaryStore } from '@/stores/dictionaryStore'
-import { computed, onBeforeMount } from 'vue'
+import { computed, onMounted } from 'vue'
 import DictionaryWithWords from './components/DictionaryWithWords.vue'
 import DotsLoader from '@/components/DotsLoader.vue'
 import EmptyDictionary from './components/EmptyDictionary.vue'
@@ -54,7 +54,7 @@ const dictionaryStore = useDictionaryStore()
 const words = computed(() => dictionaryStore.words)
 const isLoading = computed(() => dictionaryStore.isLoading)
 
-onBeforeMount(() => {
+onMounted(() => {
   dictionaryStore.fetchAllWords()
 })
 </script>
