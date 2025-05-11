@@ -1,3 +1,5 @@
+import type { USER_ROLES } from '../enums/common'
+
 export interface ErrorResponse {
   message: string[]
   error: string
@@ -41,6 +43,7 @@ export interface UserData {
   email: string
   surname: string
   firstname: string
+  role: keyof typeof USER_ROLES
   iat: number
   exp: number
 }

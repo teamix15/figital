@@ -10,6 +10,7 @@ export const ENDPOINTS = {
 
   WORDS: (count: number, unit: number) => `/words/${count}/unit/${unit}`,
   WORDS_UPLOAD: (unit: number) => `/words/upload/${unit}`,
+  WORDS_DOWNLOAD: (unit: number) => `/words/download/${unit}`,
 
   GAPS: (count: number, unit: number) => `/gaps/${count}/unit/${unit}`,
   UPLOAD_GAPS: (unit: number) => `/gaps/upload/${unit}`,
