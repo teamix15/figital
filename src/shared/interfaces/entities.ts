@@ -65,9 +65,29 @@ export interface UserData {
 // Gaps
 export interface GapsResponse {
   sentences: GapsItem[]
+  webhookUrl: string
 }
 
 export interface GapsItem {
   text: string
   answers: string[]
+  index: number
+}
+
+// Statistics
+export interface StatisticsItem {
+  unit: string
+  exercise: string
+  completed: number
+  total: number
+  progress: number
+}
+
+export interface UserStatisticItem {
+  user: {
+    _id: string
+    firstname: string
+    surname: string
+  }
+  stat: StatisticsItem[]
 }

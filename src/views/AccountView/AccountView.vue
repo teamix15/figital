@@ -30,7 +30,10 @@
             {{ userData?.firstname }} {{ userData?.surname }}
           </h2>
           <div class="mt-4 text-sm">
-            <p>Speciality: 'NA'</p>
+            <p>
+              Speciality:
+              {{ (userData?.role as USER_ROLES) === USER_ROLES.ADMIN ? 'Teacher' : 'Student' }}
+            </p>
             <p>Score: 'NA'</p>
             <CommonButton label="Log out" @click="userStore.logoutUser" class="h-[20px] mt-2" />
           </div>
@@ -44,8 +47,12 @@
       </div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-6 p-[16px]" style="margin-top: -40px">
+    <!-- <div class="max-w-7xl mx-auto px-6 p-[16px]" style="margin-top: -40px">
       <UnitCard :unit-number="1" />
+    </div> -->
+
+    <div class="w-full mx-auto px-6 p-[16px]">
+      <ExercisesStatistic />
     </div>
   </div>
 </template>
@@ -55,13 +62,20 @@ import { computed, onMounted } from 'vue'
 import { useUserStore } from '@/stores/userStore'
 import UnitCard from '@/components/UnitCard.vue'
 import CommonButton from '@/components/CommonButton.vue'
+import { useStatisticsStore } from '@/stores/statisticsStore'
+import { USER_ROLES } from '@/shared/enums/common'
+import ExercisesStatistic from './components/ExercisesStatistic.vue'
 
 const userStore = useUserStore()
+const statisticsStore = useStatisticsStore()
+
 const userData = computed(() => userStore.userData)
+const statistic = computed(() => statisticsStore.userStatistics)
 
 onMounted(() => {
   if (!userData.value) {
     userStore.getUserData()
   }
+  statisticsStore.fetchUserStatistics()
 })
 </script>

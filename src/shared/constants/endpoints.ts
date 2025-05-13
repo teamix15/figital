@@ -15,4 +15,9 @@ export const ENDPOINTS = {
   GAPS: (count: number, unit: number) => `/gaps/${count}/unit/${unit}`,
   UPLOAD_GAPS: (unit: number) => `/gaps/upload/${unit}`,
   DOWNLOAD_GAPS_FILE: (unit: number) => `/gaps/download/${unit}`,
+
+  STATISTICS: `/statistics`,
+  STATISTICS_ALL: `/statistics/all`,
+
+  WEBHOOK: (id: string) => `/webhook/${id}`,
 }

@@ -6,10 +6,10 @@
     >
       <h3 class="text-xl font-medium">YOUR LEVEL</h3>
       <h2 class="text-6xl font-bold mt-4">UNIT {{ unitNumber }}</h2>
-      <div class="mt-4 text-sm max-w-xs">
+      <!-- <div class="mt-4 text-sm max-w-xs">
         <p>ТУТ МОЖЕТ БЫТЬ НАПИСАНО КАКОЕ-ТО НАПУТСТВИЕ (?)</p>
         <p class="mt-2">ПРИМЕР: СДЕЛАТЬ ПЕРВЫЙ ШАГ ВСЕГДА ТЯЖЕЛО, НО ТЫ ЕГО СДЕЛАЛ</p>
-      </div>
+      </div> -->
       <div class="absolute bottom-6 right-6">
         <div class="bg-white rounded-full p-2">
           <ArrowRight size="24" :style="{ color: `var(--color-unit-${unitNumber})` }" />

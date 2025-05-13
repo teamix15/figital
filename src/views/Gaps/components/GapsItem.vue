@@ -38,8 +38,8 @@
 
       <CommonButton
         v-if="allAnswersFilled && !showResults"
-        label="Check Answers"
-        @click="showResults = true"
+        label="OK"
+        @click="handleOkClick"
         class="h-[12px]"
       />
     </div>
@@ -52,6 +52,7 @@ import type { GapsItem } from '@/shared/interfaces/entities'
 import { ref, watch, computed } from 'vue'
 
 const props = defineProps<{ sentence: GapsItem; stepNumber: number }>()
+const emit = defineEmits(['update-answers', 'completed'])
 
 const parts = computed(() => props.sentence.text.split('*'))
 const gapsCount = computed(() => parts.value.length - 1)
@@ -59,8 +60,6 @@ const gapsCount = computed(() => parts.value.length - 1)
 const shuffledAnswers = ref<string[]>([])
 const selectedAnswers = ref<(string | null)[]>([])
 const showResults = ref(false)
-
-const emit = defineEmits(['update-stats'])
 
 const allAnswersFilled = computed(() => selectedAnswers.value.every((answer) => answer !== null))
 
@@ -92,6 +91,12 @@ const deselectAnswer = (index: number) => {
   }
 }
 
+const handleOkClick = () => {
+  showResults.value = true
+  emit('completed', props.stepNumber - 1)
+  emit('update-answers', selectedAnswers.value as string[], props.stepNumber - 1)
+}
+
 watch(
   () => props.sentence,
   (newSentence) => {
@@ -101,14 +106,4 @@ watch(
   },
   { immediate: true, deep: true },
 )
-
-watch(showResults, (newVal) => {
-  if (newVal) {
-    const correct = selectedAnswers.value.filter(
-      (answer, index) => answer === props.sentence.answers[index],
-    ).length
-    const incorrect = gapsCount.value - correct
-    emit('update-stats', { correct, incorrect }, props.stepNumber - 1)
-  }
-})
 </script>
