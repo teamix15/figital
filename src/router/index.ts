@@ -4,7 +4,6 @@ import AccountView from '@/views/AccountView/AccountView.vue'
 import SignUpView from '@/views/SignUpView/SignUpView.vue'
 import SignInView from '@/views/SignInView/SignInView.vue'
 import DictionaryView from '@/views/DictionaryView/DictionaryView.vue'
-import WordsGameView from '@/views/WordsGameView/WordsGameView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import AccountGamesView from '@/views/AccountGamesView/AccountGamesView.vue'
 import FourWordsCardGame from '@/views/FourWordsCardGame/FourWordsCardGame.vue'
@@ -18,7 +17,6 @@ const ROUTE_NAMES = {
   UNITS: 'units',
   ACCOUNT: 'account',
   DICTIONARY: 'dictionary',
-  WORDS_GAME: 'words-game',
   FOUR_CARD_WORDS_GAME: 'four-card-words-game',
   GAMES: 'games',
   WRITING: 'writing',
@@ -32,7 +30,6 @@ const PATHS = {
   UNITS: '/units',
   ACCOUNT: '/account',
   DICTIONARY: '/dictionary',
-  WORDS_GAME: '/account/:unit/games/words-game',
   FOUR_CARD_WORDS_GAME: '/account/:unit/games/four-card-words-game',
   GAMES: '/account/:unit/games',
   WRITING: '/account/:unit/writing',
@@ -73,13 +70,6 @@ const router = createRouter({
       path: PATHS.DICTIONARY,
       name: ROUTE_NAMES.DICTIONARY,
       component: DictionaryView,
-      meta: { requiresAuth: true },
-    },
-    {
-      path: PATHS.WORDS_GAME,
-      name: ROUTE_NAMES.WORDS_GAME,
-      component: WordsGameView,
-      props: true,
       meta: { requiresAuth: true },
     },
     {

@@ -9,7 +9,7 @@ export const ENDPOINTS = {
   },
   DICTIONARY: '/dictionary',
 
-  WORDS: (count: number, unit: number) => `/words/${count}/unit/${unit}`,
+  WORDS: (unit: number) => `/words/${unit}`,
   WORDS_UPLOAD: (unit: number) => `/words/upload/${unit}`,
   WORDS_DOWNLOAD: (unit: number) => `/words/download/${unit}`,
 

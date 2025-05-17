@@ -4,10 +4,6 @@
       <RouterLink :to="{ name: ROUTE_NAMES.FOUR_CARD_WORDS_GAME, params: { unit } }">
         <UnitGamePrctiseCard title="Four cards words game" :unit="unit" />
       </RouterLink>
-
-      <RouterLink :to="{ name: ROUTE_NAMES.WORDS_GAME, params: { unit } }">
-        <UnitGamePrctiseCard title="Six cards words game" :unit="unit" />
-      </RouterLink>
     </div>
   </AccountWorkingLayout>
 </template>

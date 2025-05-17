@@ -97,3 +97,10 @@ export interface WebhookResultItem {
   studentAnswer: string
   rightAnswer: string
 }
+
+// Words
+export interface FetchWordsResponse {
+  russian: string
+  options: []
+  webhookUrl: string
+}

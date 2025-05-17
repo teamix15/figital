@@ -7,7 +7,7 @@ export class WebHookService {
   static async getResult(
     params: { id: string },
     data: { answers: string[][] },
-  ): Promise<AxiosResponse<WebhookResultItem[][]>> {
+  ): Promise<AxiosResponse<{ result: WebhookResultItem[][] }>> {
     return api({
       method: 'post',
       url: ENDPOINTS.WEBHOOK(params.id),
