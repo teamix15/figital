@@ -12,18 +12,11 @@
           <div :class="exerciseIconClass(stat.exercise)" class="p-3 rounded-lg">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
-                v-if="stat.exercise === 'words'"
+                v-if="stat.exercise === 'quiz'"
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="2"
-                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-              />
-              <path
-                v-if="stat.exercise === 'gaps'"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12l4-4m0 0l4-4m-4 4l-4-4"
               />
             </svg>
           </div>
@@ -36,6 +29,7 @@
         </div>
 
         <div class="space-y-3">
+          <!-- Прогресс бар -->
           <div class="flex justify-between text-sm">
             <span class="text-gray-600">Progress:</span>
             <span class="font-medium" :class="progressTextClass(stat.exercise)">
@@ -75,7 +69,8 @@ const exerciseIconClass = (exercise: string) => {
     {
       words: 'bg-blue-500',
       gaps: 'bg-green-500',
-    }[exercise] || 'bg-purple-500'
+      quiz: 'bg-purple-500',
+    }[exercise] || 'bg-gray-500'
   )
 }
 
@@ -84,7 +79,8 @@ const progressBarClass = (exercise: string) => {
     {
       words: 'bg-blue-400',
       gaps: 'bg-green-400',
-    }[exercise] || 'bg-purple-400'
+      quiz: 'bg-purple-400',
+    }[exercise] || 'bg-gray-400'
   )
 }
 
@@ -93,7 +89,8 @@ const progressTextClass = (exercise: string) => {
     {
       words: 'text-blue-600',
       gaps: 'text-green-600',
-    }[exercise] || 'text-purple-600'
+      quiz: 'text-purple-600',
+    }[exercise] || 'text-gray-600'
   )
 }
 
