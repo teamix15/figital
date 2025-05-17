@@ -15,7 +15,7 @@
             <button
               v-for="(answer, answerIndex) in question.answers"
               :key="answerIndex"
-              class="text-left px-6 py-3 rounded-[40px] cursor-pointer w-fit max-w-full transition-all"
+              class="text-left px-6 py-3 rounded-[40px] cursor-pointer w-fit max-w-full hover-effect"
               :class="[
                 'bg-primary text-white',
                 {

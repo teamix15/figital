@@ -114,8 +114,6 @@ const handleCreateTeacher = async (formData: TeacherFormData) => {
 }
 
 onBeforeMount(() => {
-  if (!userData.value) {
-    userStore.getUserData()
-  }
+  userStore.getUserData()
 })
 </script>
