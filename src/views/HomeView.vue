@@ -18,7 +18,7 @@
         </div>
         <div class="w-full lg:w-1/2 relative order-1 lg:order-2">
           <img
-            src="@/shared/assets/home-view-main.svg"
+            src="/home-view-main.svg"
             alt="Library illustration"
             class="w-full h-auto max-h-[500px] object-cover rounded-3xl lg:rounded-[48px]"
           />
@@ -80,7 +80,7 @@
         <div class="bg-[#282828] rounded-3xl p-6 sm:p-12 relative overflow-hidden">
           <div class="absolute inset-0 z-0">
             <img
-              src="@/shared/assets/home-view-main.svg"
+              src="/home-view-main.svg"
               alt="Education background"
               class="w-full h-full object-cover opacity-30"
             />

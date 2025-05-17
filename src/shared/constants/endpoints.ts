@@ -5,14 +5,24 @@ export const ENDPOINTS = {
     REFRESH: '/auth/refresh',
     CHANGE_PASSWORD: '/auth/changePassword',
     PROFILE: '/auth/profile',
+    CREATE_ADMIN: '/auth/createAdmin',
   },
   DICTIONARY: '/dictionary',
 
-  WORDS: (count: number, unit: number) => `/words/${count}/unit/${unit}`,
+  WORDS: (unit: number) => `/words/${unit}`,
   WORDS_UPLOAD: (unit: number) => `/words/upload/${unit}`,
   WORDS_DOWNLOAD: (unit: number) => `/words/download/${unit}`,
 
   GAPS: (count: number, unit: number) => `/gaps/${count}/unit/${unit}`,
   UPLOAD_GAPS: (unit: number) => `/gaps/upload/${unit}`,
   DOWNLOAD_GAPS_FILE: (unit: number) => `/gaps/download/${unit}`,
+
+  STATISTICS: `/statistics`,
+  STATISTICS_ALL: `/statistics/all`,
+
+  QUIZ: (count: number, unit: number) => `/quiz/${count}/unit/${unit}`,
+  QUIZ_UPLOAD: (unit: number) => `/quiz/upload/${unit}`,
+  QUIZ_DOWNLOAD: (unit: number) => `/quiz/download/${unit}`,
+
+  WEBHOOK: (id: string) => `/webhook/${id}`,
 }

@@ -4,12 +4,12 @@ import AccountView from '@/views/AccountView/AccountView.vue'
 import SignUpView from '@/views/SignUpView/SignUpView.vue'
 import SignInView from '@/views/SignInView/SignInView.vue'
 import DictionaryView from '@/views/DictionaryView/DictionaryView.vue'
-import WordsGameView from '@/views/WordsGameView/WordsGameView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import AccountGamesView from '@/views/AccountGamesView/AccountGamesView.vue'
 import FourWordsCardGame from '@/views/FourWordsCardGame/FourWordsCardGame.vue'
 import AccountWritingView from '@/views/AccountWritingView/AccountWritingView.vue'
 import GapsView from '@/views/Gaps/GapsView.vue'
+import QuizView from '@/views/QuizView/QuizView.vue'
 
 const ROUTE_NAMES = {
   HOME: 'home',
@@ -18,11 +18,11 @@ const ROUTE_NAMES = {
   UNITS: 'units',
   ACCOUNT: 'account',
   DICTIONARY: 'dictionary',
-  WORDS_GAME: 'words-game',
   FOUR_CARD_WORDS_GAME: 'four-card-words-game',
   GAMES: 'games',
   WRITING: 'writing',
   GAPS: 'gaps',
+  QUIZ: `quiz`,
 }
 
 const PATHS = {
@@ -32,11 +32,11 @@ const PATHS = {
   UNITS: '/units',
   ACCOUNT: '/account',
   DICTIONARY: '/dictionary',
-  WORDS_GAME: '/account/:unit/games/words-game',
   FOUR_CARD_WORDS_GAME: '/account/:unit/games/four-card-words-game',
   GAMES: '/account/:unit/games',
   WRITING: '/account/:unit/writing',
   GAPS: '/account/:unit/writing/gaps',
+  QUIZ: '/account/:unit/writing/quiz',
 }
 
 const router = createRouter({
@@ -76,13 +76,6 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
-      path: PATHS.WORDS_GAME,
-      name: ROUTE_NAMES.WORDS_GAME,
-      component: WordsGameView,
-      props: true,
-      meta: { requiresAuth: true },
-    },
-    {
       path: PATHS.GAMES,
       name: ROUTE_NAMES.GAMES,
       component: AccountGamesView,
@@ -107,6 +100,13 @@ const router = createRouter({
       path: PATHS.GAPS,
       name: ROUTE_NAMES.GAPS,
       component: GapsView,
+      props: true,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: PATHS.QUIZ,
+      name: ROUTE_NAMES.QUIZ,
+      component: QuizView,
       props: true,
       meta: { requiresAuth: true },
     },

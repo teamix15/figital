@@ -4,6 +4,10 @@
       <RouterLink :to="{ name: ROUTE_NAMES.GAPS, params: { unit } }">
         <UnitGamePrctiseCard title="Gaps" :unit="unit" />
       </RouterLink>
+
+      <RouterLink :to="{ name: ROUTE_NAMES.QUIZ, params: { unit } }">
+        <UnitGamePrctiseCard title="Quiz" :unit="unit" />
+      </RouterLink>
     </div>
   </AccountWorkingLayout>
 </template>

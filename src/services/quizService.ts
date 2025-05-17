@@ -1,27 +1,27 @@
 import { ENDPOINTS } from '@/shared/constants/endpoints'
-import type { FetchWordsResponse } from '@/shared/interfaces/entities'
+import type { GetQuizResponse } from '@/shared/interfaces/entities'
 import api from '@/shared/utils/api'
 import type { AxiosResponse } from 'axios'
 
-export class WordsService {
-  static async fetchWords(unit: number): Promise<AxiosResponse<FetchWordsResponse>> {
+export class QuizService {
+  static async getQuiz(params: {
+    count: number
+    unit: number
+  }): Promise<AxiosResponse<GetQuizResponse>> {
+    const { count, unit } = params
     return api({
       method: 'get',
-      url: ENDPOINTS.WORDS(unit),
+      url: ENDPOINTS.QUIZ(count, unit),
     })
   }
 
-  static async uploadWords(
-    params: {
-      unit: number
-    },
-    file: File,
-  ): Promise<AxiosResponse> {
+  static async uploadQuizFile(unit: number, file: File): Promise<AxiosResponse> {
     const formData = new FormData()
     formData.append('file', file)
+
     return api({
       method: 'post',
-      url: ENDPOINTS.WORDS_UPLOAD(params.unit),
+      url: ENDPOINTS.QUIZ_UPLOAD(unit),
       data: formData,
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -29,17 +29,18 @@ export class WordsService {
     })
   }
 
-  static async downloadWords(params: { unit: number }): Promise<void> {
+  static async downloadQuizFile(unit: number): Promise<void> {
     const response = await api({
       method: 'get',
-      url: ENDPOINTS.WORDS_DOWNLOAD(params.unit),
+      url: ENDPOINTS.QUIZ_DOWNLOAD(unit),
       responseType: 'blob',
     })
+
     const blob = response.data as Blob
     const url = window.URL.createObjectURL(blob)
     const link = document.createElement('a')
     link.href = url
-    link.setAttribute('download', `words_unit_${params.unit}.xlsx`) // или другой формат
+    link.setAttribute('download', `quiz_unit_${unit}.xlsx`)
     document.body.appendChild(link)
     link.click()
     link.remove()

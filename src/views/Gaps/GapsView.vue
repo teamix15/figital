@@ -1,26 +1,36 @@
 <template>
   <AccountWorkingLayout :unitNumber="unit">
-    <div class="flex-1 bg-white pt-[58px]">
+    <div class="flex-1 bg-white pt-[58px]" v-if="!isLoading">
       <h1 class="text-2xl font-bold mb-8">1. EXERCISE FILL IN THE GAPS</h1>
       <GapsItem
         v-for="(sentence, index) in sentences"
         :key="index"
         :sentence="sentence"
         :step-number="index + 1"
-        @update-stats="handleStatsUpdate"
+        :check-result="checkResultsData[index]"
+        :show-results="showResults"
+        @update-answers="handleAnswersUpdate"
+        @completed="handleStepCompleted"
       />
 
-      <DotsLoader v-if="isLoading"/>
-
-      <div v-if="showStatistics" class="mt-8 p-4 bg-gray-50 rounded-lg">
-        <h2 class="text-xl font-bold mb-4">Exercise Results</h2>
-        <div class="grid grid-cols-2 gap-4">
-          <div class="text-green-600">✓ Correct: {{ totalCorrect }}</div>
-          <div class="text-red-600">✗ Incorrect: {{ totalIncorrect }}</div>
-        </div>
-        <div class="mt-4">Success rate: {{ successRate }}%</div>
+      <div class="flex gap-2 mt-8 mb-8">
+        <CommonButton
+          label="Check Result"
+          @click="checkResults"
+          class="h-[40px]"
+          :disabled="isChecking || showResults || !allStepsCompleted"
+        />
+        <CommonButton
+          label="Next"
+          @click="handleNext"
+          class="h-[40px]"
+          :disabled="!showResults || isLoading"
+        />
       </div>
+
     </div>
+    <DotsLoader v-if="isLoading || isChecking" />
+
   </AccountWorkingLayout>
 </template>
 
@@ -29,45 +39,71 @@ import AccountWorkingLayout from '@/layouts/AccountWorkingLayout.vue'
 import { useGapsStore } from '@/stores/gapsStore'
 import { computed, onBeforeMount, ref, watch } from 'vue'
 import GapsItem from './components/GapsItem.vue'
-import DotsLoader from '@/components/DotsLoader.vue';
+import DotsLoader from '@/components/DotsLoader.vue'
+import { WebHookService } from '@/services/webHookService'
+import CommonButton from '@/components/CommonButton.vue'
+import type { WebhookResultItem } from '@/shared/interfaces/entities'
 
 const props = defineProps<{ unit: number }>()
 
 const gapsStore = useGapsStore()
 const isLoading = computed(() => gapsStore.isLoading)
 const sentences = computed(() => gapsStore.sentences)
+const webhookUrl = computed(() => gapsStore.webhookUrl)
+
+const answers = ref<string[][]>([])
+const completedSteps = ref<number[]>([])
+const isChecking = ref(false)
+const checkResultsData = ref<WebhookResultItem[][]>([])
+const showResults = ref(false)
 
 onBeforeMount(() => {
   gapsStore.fetchSentences({ unit: props.unit, count: 5 })
 })
 
-const stats = ref<Record<number, { correct: number; incorrect: number }>>({})
-const showStatistics = ref(false)
-
-const handleStatsUpdate = (payload: { correct: number; incorrect: number }, index: number) => {
-  stats.value[index] = payload
-  checkCompletion()
+const handleAnswersUpdate = (payload: string[], index: number) => {
+  answers.value[index] = payload
 }
 
-const checkCompletion = () => {
-  showStatistics.value = Object.keys(stats.value).length === sentences.value.length
+const handleStepCompleted = (index: number) => {
+  if (!completedSteps.value.includes(index)) {
+    completedSteps.value.push(index)
+  }
 }
 
-const totalCorrect = computed(() =>
-  Object.values(stats.value).reduce((sum, item) => sum + item.correct, 0),
-)
-
-const totalIncorrect = computed(() =>
-  Object.values(stats.value).reduce((sum, item) => sum + item.incorrect, 0),
-)
-
-const successRate = computed(() => {
-  const total = totalCorrect.value + totalIncorrect.value
-  return total > 0 ? Math.round((totalCorrect.value / total) * 100) : 0
+const allStepsCompleted = computed(() => {
+  return completedSteps.value.length === sentences.value.length
 })
 
-watch(sentences, (newVal) => {
-  stats.value = {}
-  showStatistics.value = false
+const checkResults = async () => {
+  if (!webhookUrl.value) {
+    return
+  }
+
+  const parts = webhookUrl.value.split('/')
+  const webhookId = parts[parts?.length - 1]
+
+  try {
+    isChecking.value = true
+    const response = await WebHookService.getResult({ id: webhookId }, { answers: answers.value })
+    checkResultsData.value = response.data
+    showResults.value = true
+    console.log('Results:', response.data)
+  } catch (error) {
+    console.error('Error checking results:', error)
+  } finally {
+    isChecking.value = false
+  }
+}
+
+const handleNext = async () => {
+  await gapsStore.fetchSentences({ unit: props.unit, count: 1 })
+}
+
+watch(sentences, () => {
+  answers.value = sentences.value.map(() => [])
+  completedSteps.value = []
+  checkResultsData.value = []
+  showResults.value = false
 })
 </script>

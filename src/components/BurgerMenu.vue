@@ -22,7 +22,7 @@
           <RouterLink to="/">
             <img
               class="w-[120px] h-[60px] hover:cursor-pointer transition-transform duration-200 hover:scale-110"
-              src="@/shared/assets/logo.svg"
+              src="/logo.svg"
               @click="isOpen = false"
             />
           </RouterLink>

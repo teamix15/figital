@@ -51,4 +51,12 @@ export class AuthService {
       withoutToken: true,
     })
   }
+
+  static async createAdmin(data: RegistrationRequestParams) {
+    return api({
+      method: 'post',
+      url: ENDPOINTS.AUTH.CREATE_ADMIN,
+      data,
+    })
+  }
 }
