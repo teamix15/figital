@@ -74,7 +74,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, ref } from 'vue'
+import { computed, onBeforeMount, onMounted, ref } from 'vue'
 import { useUserStore } from '@/stores/userStore'
 import CommonButton from '@/components/CommonButton.vue'
 import { USER_ROLES } from '@/shared/enums/common'
@@ -113,7 +113,7 @@ const handleCreateTeacher = async (formData: TeacherFormData) => {
   }
 }
 
-onMounted(() => {
+onBeforeMount(() => {
   if (!userData.value) {
     userStore.getUserData()
   }

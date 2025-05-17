@@ -48,6 +48,7 @@ import CommonSelector from '@/components/UnitSelector.vue'
 import CommonButton from '@/components/CommonButton.vue'
 import UploadModal from '@/components/UploadModal.vue'
 import { useExerciseStore } from '@/stores/exerciseStore'
+import { toast } from 'vue3-toastify'
 
 const EXERCISE_TYPES = {
   games: ['words'],
@@ -55,7 +56,6 @@ const EXERCISE_TYPES = {
 } as const
 
 type Category = keyof typeof EXERCISE_TYPES
-// eslint-disable-next-line
 type Exercise = (typeof EXERCISE_TYPES)[Category][number]
 
 const exerciseStore = useExerciseStore()
@@ -71,10 +71,13 @@ const currentCategory = ref<Category | ''>('')
 const currentExercise = ref<Exercise | ''>('')
 const currentUnit = ref<number | null>(null)
 
-const exerciseHandlers: Record<string, {
-  upload: (file: File, unit: number) => Promise<void>
-  download: (unit: number) => Promise<void>
-}> = {
+const exerciseHandlers: Record<
+  string,
+  {
+    upload: (file: File, unit: number) => Promise<void>
+    download: (unit: number) => Promise<void>
+  }
+> = {
   words: {
     upload: (file: File, unit: number) => exerciseStore.uploadWordsExercise(file, unit),
     download: (unit: number) => exerciseStore.downloadWordsExercise(unit),
@@ -102,6 +105,11 @@ const handleDownload = async (category: Category, exercise: Exercise) => {
 const handleFileUpload = async (file: File) => {
   if (currentUnit.value && currentExercise.value) {
     await exerciseHandlers[currentExercise.value].upload(file, currentUnit.value)
+    if (currentExercise.value === 'words') {
+      toast.success('Words file uploaded successfully!')
+    } else if (currentExercise.value === 'gaps') {
+      toast.success('Gaps file uploaded successfully!')
+    }
   }
   showUploadModal.value = false
 }

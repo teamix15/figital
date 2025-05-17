@@ -1,6 +1,6 @@
 <template>
   <AccountWorkingLayout :unitNumber="unit">
-    <div class="flex-1 bg-white pt-[58px]">
+    <div class="flex-1 bg-white pt-[58px]" v-if="!isLoading">
       <h1 class="text-2xl font-bold mb-8">1. EXERCISE FILL IN THE GAPS</h1>
       <GapsItem
         v-for="(sentence, index) in sentences"
@@ -28,8 +28,9 @@
         />
       </div>
 
-      <DotsLoader v-if="isLoading || isChecking" />
     </div>
+    <DotsLoader v-if="isLoading || isChecking" />
+
   </AccountWorkingLayout>
 </template>
 
