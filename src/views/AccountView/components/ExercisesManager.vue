@@ -35,7 +35,7 @@
     <UploadModal
       v-if="showUploadModal"
       :exerciseType="currentExercise"
-      :unit="currentUnit"
+      :unit="currentUnit !== null ? String(currentUnit) : undefined"
       @close="showUploadModal = false"
       @upload="handleFileUpload"
     />
@@ -44,7 +44,7 @@
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
-import CommonSelector from '@/components/CommonSelector.vue'
+import CommonSelector from '@/components/UnitSelector.vue'
 import CommonButton from '@/components/CommonButton.vue'
 import UploadModal from '@/components/UploadModal.vue'
 import { useExerciseStore } from '@/stores/exerciseStore'
@@ -52,48 +52,55 @@ import { useExerciseStore } from '@/stores/exerciseStore'
 const EXERCISE_TYPES = {
   games: ['words'],
   writing: ['gaps'],
-}
+} as const
+
+type Category = keyof typeof EXERCISE_TYPES
+// eslint-disable-next-line
+type Exercise = (typeof EXERCISE_TYPES)[Category][number]
 
 const exerciseStore = useExerciseStore()
-const availableUnits = Array.from({ length: 12 }, (_, i) => `UNIT ${i + 1}`)
+const availableUnits = Array.from({ length: 12 }, (_, i) => i + 1)
 
-const selectedUnits = reactive({
+const selectedUnits: Record<Category, Record<string, number | null>> = reactive({
   games: { words: null },
   writing: { gaps: null },
 })
 
 const showUploadModal = ref(false)
-const currentCategory = ref('')
-const currentExercise = ref('')
-const currentUnit = ref('')
+const currentCategory = ref<Category | ''>('')
+const currentExercise = ref<Exercise | ''>('')
+const currentUnit = ref<number | null>(null)
 
-const exerciseHandlers = {
+const exerciseHandlers: Record<string, {
+  upload: (file: File, unit: number) => Promise<void>
+  download: (unit: number) => Promise<void>
+}> = {
   words: {
-    upload: (file: File, unit: string) => exerciseStore.uploadWordsExercise(file, unit),
-    download: (unit: string) => exerciseStore.downloadWordsExercise(unit),
+    upload: (file: File, unit: number) => exerciseStore.uploadWordsExercise(file, unit),
+    download: (unit: number) => exerciseStore.downloadWordsExercise(unit),
   },
   gaps: {
-    upload: (file: File, unit: string) => exerciseStore.uploadGapsExercise(file, unit),
-    download: (unit: string) => exerciseStore.downloadGapsExercise(unit),
+    upload: (file: File, unit: number) => exerciseStore.uploadGapsExercise(file, unit),
+    download: (unit: number) => exerciseStore.downloadGapsExercise(unit),
   },
 }
 
-const openUploadModal = (category: string, exercise: string) => {
+const openUploadModal = (category: Category, exercise: Exercise) => {
   currentCategory.value = category
   currentExercise.value = exercise
   currentUnit.value = selectedUnits[category][exercise]
   showUploadModal.value = true
 }
 
-const handleDownload = async (category: string, exercise: string) => {
+const handleDownload = async (category: Category, exercise: Exercise) => {
   const unit = selectedUnits[category][exercise]
-  if (exerciseHandlers[exercise]?.download) {
+  if (unit) {
     await exerciseHandlers[exercise].download(unit)
   }
 }
 
 const handleFileUpload = async (file: File) => {
-  if (exerciseHandlers[currentExercise.value]?.upload) {
+  if (currentUnit.value && currentExercise.value) {
     await exerciseHandlers[currentExercise.value].upload(file, currentUnit.value)
   }
   showUploadModal.value = false

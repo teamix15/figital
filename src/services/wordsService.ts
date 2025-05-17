@@ -21,19 +21,34 @@ export class WordsService {
     params: {
       unit: number
     },
-    data: { file: Blob },
+    file: File,
   ): Promise<AxiosResponse> {
+    const formData = new FormData();
+    formData.append('file', file);
     return api({
-      method: 'get',
+      method: 'post',
       url: ENDPOINTS.WORDS_UPLOAD(params.unit),
-      data,
-    })
+      data: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
   }
 
-  static async downloadWords(params: { unit: number }): Promise<AxiosResponse<{ file: Blob }>> {
-    return api({
+  static async downloadWords(params: { unit: number }): Promise<void> {
+    const response = await api({
       method: 'get',
-      url: ENDPOINTS.WORDS_UPLOAD(params.unit),
-    })
+      url: ENDPOINTS.WORDS_DOWNLOAD(params.unit),
+      responseType: 'blob',
+    });
+    const blob = response.data as Blob;
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `words_unit_${params.unit}.xlsx`); // или другой формат
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.URL.revokeObjectURL(url);
   }
 }

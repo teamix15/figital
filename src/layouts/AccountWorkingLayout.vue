@@ -63,7 +63,7 @@
 </template>
 
 <script setup lang="ts">
-import CommonSelector from '@/components/CommonSelector.vue'
+import CommonSelector from '@/components/UnitSelector.vue'
 import { ROUTE_NAMES } from '@/router'
 import { useUserStore } from '@/stores/userStore'
 import { computed } from 'vue'
