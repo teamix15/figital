@@ -4,7 +4,7 @@
       <div class="relative h-80">
         <div class="absolute inset-0 overflow-hidden bg-black/30">
           <img
-            src="@/shared/assets/account-background.svg"
+            src="/account-background.svg"
             alt="Profile background"
             class="w-full h-full object-cover mix-blend-multiply"
           />
@@ -17,7 +17,7 @@
               <div
                 class="w-32 h-32 rounded-full overflow-hidden border-4 border-white bg-[#d9d9d9]"
               >
-                <img src="@/shared/assets/base-avatar.svg" alt="Avatar" class="h-full w-full" />
+                <img src="/base-avatar.svg" alt="Avatar" class="h-full w-full" />
               </div>
 
               <div class="text-white">

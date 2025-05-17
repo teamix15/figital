@@ -5,6 +5,7 @@ export const ENDPOINTS = {
     REFRESH: '/auth/refresh',
     CHANGE_PASSWORD: '/auth/changePassword',
     PROFILE: '/auth/profile',
+    CREATE_ADMIN: "/auth/createAdmin"
   },
   DICTIONARY: '/dictionary',
 

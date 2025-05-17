@@ -2,7 +2,7 @@
   <div class="relative flex justify-center">
     <div class="absolute inset-0 bg-black/60 z-0">
       <img
-        src="@/shared/assets/home-view-main.svg"
+        src="/home-view-main.svg"
         alt="Dictionary background"
         class="object-cover w-full h-full mix-blend-overlay"
       />

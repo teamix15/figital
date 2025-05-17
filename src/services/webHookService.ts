@@ -9,7 +9,7 @@ export class WebHookService {
     data: { answers: string[][] },
   ): Promise<AxiosResponse<GapsResponse>> {
     return api({
-      method: 'get',
+      method: 'post',
       url: ENDPOINTS.WEBHOOK(params.id),
       data,
     })

@@ -5,7 +5,7 @@
       class="rounded-full px-6 py-2 font-medium flex items-center hover-effect"
       :style="{ backgroundColor: color, color: textColor }"
     >
-      <span>{{ title }}</span>
+      <span>{{ selectedUnit || title }}</span>
       <svg
         class="w-5 h-5 ml-1 transition-transform duration-200"
         :class="{ 'rotate-180': isOpen }"
@@ -32,11 +32,11 @@
         <button
           v-for="unit in units"
           :key="unit"
-          disabled
-          class="flex items-center justify-between bg-[#ececec] text-[#c0c0c0] py-2 px-4 rounded-full w-full font-medium text-sm"
+          @click="selectUnit(unit)"
+          class="flex items-center justify-between py-2 px-4 rounded-full w-full font-medium text-sm transition-colors"
+          :class="[unit === selectedUnit ? 'bg-[#7bb0ec] text-white' : 'hover:bg-gray-100']"
         >
           {{ unit }}
-          <img src="@/shared/assets/icons/lock.svg" alt="lock" class="h-4 w-4 text-[#c0c0c0]" />
         </button>
       </div>
     </transition>
@@ -51,31 +51,31 @@ interface Props {
   color?: string
   textColor?: string
   units?: string[]
+  modelValue?: string | null
 }
 
 const props = withDefaults(defineProps<Props>(), {
   title: 'Select',
   color: '#7bb0ec',
   textColor: 'white',
-  units: () => [
-    'UNIT 1',
-    'UNIT 2',
-    'UNIT 3',
-    'UNIT 4',
-    'UNIT 5',
-    'UNIT 6',
-    'UNIT 7',
-    'UNIT 8',
-    'UNIT 9',
-    'UNIT 10',
-    'UNIT 11',
-    'UNIT 12',
-  ],
+  units: () => Array.from({ length: 12 }, (_, i) => `UNIT ${i + 1}`),
+  modelValue: null,
 })
 
+const emit = defineEmits(['update:modelValue'])
+
 const isOpen = ref(false)
+const selectedUnit = computed({
+  get: () => props.modelValue,
+  set: (value) => emit('update:modelValue', value),
+})
 
 const toggleDropdown = () => {
   isOpen.value = !isOpen.value
+}
+
+const selectUnit = (unit: string) => {
+  selectedUnit.value = unit
+  isOpen.value = false
 }
 </script>
