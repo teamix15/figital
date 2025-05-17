@@ -5,7 +5,7 @@ export const ENDPOINTS = {
     REFRESH: '/auth/refresh',
     CHANGE_PASSWORD: '/auth/changePassword',
     PROFILE: '/auth/profile',
-    CREATE_ADMIN: "/auth/createAdmin"
+    CREATE_ADMIN: '/auth/createAdmin',
   },
   DICTIONARY: '/dictionary',
 
@@ -19,6 +19,10 @@ export const ENDPOINTS = {
 
   STATISTICS: `/statistics`,
   STATISTICS_ALL: `/statistics/all`,
+
+  QUIZ: (count: number, unit: number) => `/quiz/${count}/unit/${unit}`,
+  QUIZ_UPLOAD: (unit: number) => `/quiz/upload/${unit}`,
+  QUIZ_DOWNLOAD: (unit: number) => `/quiz/download/${unit}`,
 
   WEBHOOK: (id: string) => `/webhook/${id}`,
 }

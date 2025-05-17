@@ -52,7 +52,7 @@ import { toast } from 'vue3-toastify'
 
 const EXERCISE_TYPES = {
   games: ['words'],
-  writing: ['gaps'],
+  writing: ['gaps', 'quiz'],
 } as const
 
 type Category = keyof typeof EXERCISE_TYPES
@@ -63,7 +63,7 @@ const availableUnits = Array.from({ length: 12 }, (_, i) => i + 1)
 
 const selectedUnits: Record<Category, Record<string, number | null>> = reactive({
   games: { words: null },
-  writing: { gaps: null },
+  writing: { gaps: null, quiz: null },
 })
 
 const showUploadModal = ref(false)
@@ -86,6 +86,10 @@ const exerciseHandlers: Record<
     upload: (file: File, unit: number) => exerciseStore.uploadGapsExercise(file, unit),
     download: (unit: number) => exerciseStore.downloadGapsExercise(unit),
   },
+  quiz: {
+    upload: (file: File, unit: number) => exerciseStore.uploadQuizExercise(file, unit),
+    download: (unit: number) => exerciseStore.downloadQuizExercise(unit),
+  },
 }
 
 const openUploadModal = (category: Category, exercise: Exercise) => {
@@ -105,10 +109,16 @@ const handleDownload = async (category: Category, exercise: Exercise) => {
 const handleFileUpload = async (file: File) => {
   if (currentUnit.value && currentExercise.value) {
     await exerciseHandlers[currentExercise.value].upload(file, currentUnit.value)
-    if (currentExercise.value === 'words') {
-      toast.success('Words file uploaded successfully!')
-    } else if (currentExercise.value === 'gaps') {
-      toast.success('Gaps file uploaded successfully!')
+    switch (currentExercise.value) {
+      case 'words':
+        toast.success('Words file uploaded successfully!')
+        break
+      case 'gaps':
+        toast.success('Gaps file uploaded successfully!')
+        break
+      case 'quiz':
+        toast.success('Quiz file uploaded successfully!')
+        break
     }
   }
   showUploadModal.value = false

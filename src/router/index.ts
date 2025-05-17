@@ -9,6 +9,7 @@ import AccountGamesView from '@/views/AccountGamesView/AccountGamesView.vue'
 import FourWordsCardGame from '@/views/FourWordsCardGame/FourWordsCardGame.vue'
 import AccountWritingView from '@/views/AccountWritingView/AccountWritingView.vue'
 import GapsView from '@/views/Gaps/GapsView.vue'
+import QuizView from '@/views/QuizView/QuizView.vue'
 
 const ROUTE_NAMES = {
   HOME: 'home',
@@ -21,6 +22,7 @@ const ROUTE_NAMES = {
   GAMES: 'games',
   WRITING: 'writing',
   GAPS: 'gaps',
+  QUIZ: `quiz`,
 }
 
 const PATHS = {
@@ -34,6 +36,7 @@ const PATHS = {
   GAMES: '/account/:unit/games',
   WRITING: '/account/:unit/writing',
   GAPS: '/account/:unit/writing/gaps',
+  QUIZ: '/account/:unit/writing/quiz',
 }
 
 const router = createRouter({
@@ -97,6 +100,13 @@ const router = createRouter({
       path: PATHS.GAPS,
       name: ROUTE_NAMES.GAPS,
       component: GapsView,
+      props: true,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: PATHS.QUIZ,
+      name: ROUTE_NAMES.QUIZ,
+      component: QuizView,
       props: true,
       meta: { requiresAuth: true },
     },

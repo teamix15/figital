@@ -104,3 +104,14 @@ export interface FetchWordsResponse {
   options: []
   webhookUrl: string
 }
+
+// Quiz
+export interface GetQuizResponse {
+  questions: QuizQuestion[]
+  webhookUrl: string
+}
+
+export interface QuizQuestion {
+  text: string
+  answers: string[]
+}
