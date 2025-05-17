@@ -91,3 +91,9 @@ export interface UserStatisticItem {
   }
   stat: StatisticsItem[]
 }
+
+export interface WebhookResultItem {
+  isCorrect: boolean
+  studentAnswer: string
+  rightAnswer: string
+}

@@ -13,14 +13,14 @@
               :class="[
                 'h-[12px] inline-flex mx-1',
                 {
-                  'border-2 border-green-500': showResults && isAnswerCorrect(index),
-                  'border-2 border-red-500': showResults && !isAnswerCorrect(index),
+                  'border-2 border-green-500': props.showResults && isAnswerCorrect(index),
+                  'border-2 border-red-500': props.showResults && !isAnswerCorrect(index),
                 },
               ]"
             />
             <span v-else class="inline-flex mx-1 text-gray-500"> {{ index + 1 }}. ___ </span>
-            <span v-if="showResults && !isAnswerCorrect(index)" class="text-sm text-red-500">
-              (Correct: {{ sentence.answers[index] }})
+            <span v-if="props.showResults && !isAnswerCorrect(index)" class="text-sm text-red-500">
+              (Correct: {{ props.checkResult && props.checkResult[index] ? props.checkResult[index].rightAnswer : sentence.answers[index] }})
             </span>
           </template>
         </template>
@@ -37,7 +37,7 @@
       </div>
 
       <CommonButton
-        v-if="allAnswersFilled && !showResults"
+        v-if="allAnswersFilled && !props.showResults && !okClicked"
         label="OK"
         @click="handleOkClick"
         class="h-[12px]"
@@ -51,7 +51,12 @@ import CommonButton from '@/components/CommonButton.vue'
 import type { GapsItem } from '@/shared/interfaces/entities'
 import { ref, watch, computed } from 'vue'
 
-const props = defineProps<{ sentence: GapsItem; stepNumber: number }>()
+const props = defineProps<{
+  sentence: GapsItem;
+  stepNumber: number;
+  checkResult?: { isCorrect: boolean; studentAnswer: string; rightAnswer: string }[];
+  showResults?: boolean;
+}>()
 const emit = defineEmits(['update-answers', 'completed'])
 
 const parts = computed(() => props.sentence.text.split('*'))
@@ -59,7 +64,7 @@ const gapsCount = computed(() => parts.value.length - 1)
 
 const shuffledAnswers = ref<string[]>([])
 const selectedAnswers = ref<(string | null)[]>([])
-const showResults = ref(false)
+const okClicked = ref(false)
 
 const allAnswersFilled = computed(() => selectedAnswers.value.every((answer) => answer !== null))
 
@@ -68,11 +73,14 @@ const shuffleArray = (array: string[]) => {
 }
 
 const isAnswerCorrect = (index: number) => {
+  if (props.checkResult && props.checkResult[index]) {
+    return props.checkResult[index].isCorrect
+  }
   return selectedAnswers.value[index] === props.sentence.answers[index]
 }
 
 const selectAnswer = (answer: string) => {
-  if (showResults.value) return
+  if (props.showResults) return
 
   const emptySlotIndex = selectedAnswers.value.findIndex((a) => a === null)
   if (emptySlotIndex !== -1) {
@@ -82,7 +90,7 @@ const selectAnswer = (answer: string) => {
 }
 
 const deselectAnswer = (index: number) => {
-  if (showResults.value) return
+  if (props.showResults) return
 
   const answer = selectedAnswers.value[index]
   if (answer) {
@@ -92,7 +100,7 @@ const deselectAnswer = (index: number) => {
 }
 
 const handleOkClick = () => {
-  showResults.value = true
+  okClicked.value = true
   emit('completed', props.stepNumber - 1)
   emit('update-answers', selectedAnswers.value as string[], props.stepNumber - 1)
 }
@@ -102,8 +110,10 @@ watch(
   (newSentence) => {
     shuffledAnswers.value = shuffleArray(newSentence.answers)
     selectedAnswers.value = Array(gapsCount.value).fill(null)
-    showResults.value = false
+    okClicked.value = false
   },
   { immediate: true, deep: true },
 )
 </script>
+
+export type GapsCheckResult = { isCorrect: boolean; studentAnswer: string; rightAnswer: string }
