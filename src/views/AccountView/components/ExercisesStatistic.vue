@@ -1,10 +1,10 @@
 <template>
   <div class="w-full mx-auto p-4">
-    <h2 class="text-2xl font-bold mb-6 text-gray-800">Statistic</h2>
+    <h2 class="text-2xl font-bold mb-6 text-gray-800" v-if="showTitle">Statistic</h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div v-if="stat && stat.length > 0" class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div
-        v-for="(stat, index) in statistic"
+        v-for="(stat, index) in stat"
         :key="index"
         class="bg-white rounded-xl p-6 shadow-lg transition-all duration-300 hover:shadow-xl"
       >
@@ -29,7 +29,6 @@
         </div>
 
         <div class="space-y-3">
-          <!-- Прогресс бар -->
           <div class="flex justify-between text-sm">
             <span class="text-gray-600">Progress:</span>
             <span class="font-medium" :class="progressTextClass(stat.exercise)">
@@ -54,15 +53,22 @@
         </div>
       </div>
     </div>
+    
+    <div v-else class="flex justify-center items-center h-40">
+      <p class="text-xl text-gray-500">Statistics are currently empty</p>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useStatisticsStore } from '@/stores/statisticsStore'
-import { computed, onMounted } from 'vue'
+import type { StatisticsItem } from '@/shared/interfaces/entities'
 
-const statisticsStore = useStatisticsStore()
-const statistic = computed(() => statisticsStore.userStatistics)
+const props = defineProps<{ 
+  stat: StatisticsItem[],
+  showTitle?: boolean
+}>()
+
+const showTitle = props.showTitle !== false
 
 const exerciseIconClass = (exercise: string) => {
   return (
@@ -93,8 +99,4 @@ const progressTextClass = (exercise: string) => {
     }[exercise] || 'text-gray-600'
   )
 }
-
-onMounted(() => {
-  statisticsStore.fetchUserStatistics()
-})
 </script>

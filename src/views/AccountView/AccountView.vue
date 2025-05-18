@@ -55,7 +55,7 @@
       <TabsContainer v-model="activeTab" :tabs="availableTabs">
         <template #exercises>
           <div v-if="isUser" class="w-full mx-auto p-[16px]">
-            <ExercisesStatistic />
+            <ExercisesStatistic :stat="currentUserStatistic" />
           </div>
           <div v-if="isAdmin" class="w-full p-[16px]">
             <ExercisesManager />
@@ -92,6 +92,7 @@ import { toast } from 'vue3-toastify'
 import ExercisesManager from './components/ExercisesManager.vue'
 import UsersStatistic from './components/UsersStatistic.vue'
 import TabsContainer from '@/components/TabsContainer.vue'
+import { useStatisticsStore } from '@/stores/statisticsStore'
 
 interface TeacherFormData {
   firstname: string
@@ -101,7 +102,7 @@ interface TeacherFormData {
 }
 
 const userStore = useUserStore()
-
+const statisticsStore = useStatisticsStore()
 const isCreateTeacherModalOpen = ref(false)
 const isCreateTeacherModalLoading = ref(false)
 const activeTab = ref('exercises')
@@ -109,6 +110,7 @@ const activeTab = ref('exercises')
 const userData = computed(() => userStore.userData)
 const isAdmin = computed(() => (userData?.value?.role as USER_ROLES) === USER_ROLES.ADMIN)
 const isUser = computed(() => (userData?.value?.role as USER_ROLES) === USER_ROLES.USER)
+const currentUserStatistic = computed(() => statisticsStore.userStatistics)
 
 const availableTabs = computed(() => {
   const tabs = [{ id: 'exercises', label: 'Exercises' }]
@@ -133,6 +135,7 @@ const handleCreateTeacher = async (formData: TeacherFormData) => {
 
 onBeforeMount(() => {
   userStore.getUserData()
+  if ((userData.value?.role as USER_ROLES) === USER_ROLES.USER)
+    statisticsStore.fetchUserStatistics()
 })
 </script>
-
