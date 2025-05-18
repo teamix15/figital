@@ -51,26 +51,33 @@
       </div>
     </div>
 
-    <!-- <div class="max-w-7xl mx-auto px-6 p-[16px]" style="margin-top: -40px">
-      <UnitCard :unit-number="1" />
-    </div> -->
+    <div class="w-full px-6">
+      <TabsContainer v-model="activeTab" :tabs="availableTabs">
+        <template #exercises>
+          <div v-if="isUser" class="w-full mx-auto p-[16px]">
+            <ExercisesStatistic />
+          </div>
+          <div v-if="isAdmin" class="w-full p-[16px]">
+            <ExercisesManager />
+          </div>
+        </template>
 
-    <div class="w-full mx-auto px-6 p-[16px]" v-if="isUser">
-      <ExercisesStatistic />
+        <template #statistic v-if="isAdmin">
+          <div class="w-full p-[16px]">
+            <UsersStatistic />
+          </div>
+        </template>
+      </TabsContainer>
     </div>
-
-    <div class="w-full mx-auto px-6 p-[16px]" v-if="isAdmin">
-      <ExercisesManager />
-    </div>
-
-    <CreateTeacherModal
-      v-if="isAdmin"
-      :is-loading="isCreateTeacherModalLoading"
-      :is-open="isCreateTeacherModalOpen"
-      @close="isCreateTeacherModalOpen = false"
-      @submit="handleCreateTeacher"
-    />
   </div>
+
+  <CreateTeacherModal
+    v-if="isAdmin"
+    :is-loading="isCreateTeacherModalLoading"
+    :is-open="isCreateTeacherModalOpen"
+    @close="isCreateTeacherModalOpen = false"
+    @submit="handleCreateTeacher"
+  />
 </template>
 
 <script lang="ts" setup>
@@ -83,6 +90,8 @@ import CreateTeacherModal from './components/CreateTeacherModal.vue'
 import { AuthService } from '@/services/authService'
 import { toast } from 'vue3-toastify'
 import ExercisesManager from './components/ExercisesManager.vue'
+import UsersStatistic from './components/UsersStatistic.vue'
+import TabsContainer from '@/components/TabsContainer.vue'
 
 interface TeacherFormData {
   firstname: string
@@ -95,10 +104,19 @@ const userStore = useUserStore()
 
 const isCreateTeacherModalOpen = ref(false)
 const isCreateTeacherModalLoading = ref(false)
+const activeTab = ref('exercises')
 
 const userData = computed(() => userStore.userData)
 const isAdmin = computed(() => (userData?.value?.role as USER_ROLES) === USER_ROLES.ADMIN)
 const isUser = computed(() => (userData?.value?.role as USER_ROLES) === USER_ROLES.USER)
+
+const availableTabs = computed(() => {
+  const tabs = [{ id: 'exercises', label: 'Exercises' }]
+  if (isAdmin.value) {
+    tabs.push({ id: 'statistic', label: 'Users statistic' })
+  }
+  return tabs
+})
 
 const handleCreateTeacher = async (formData: TeacherFormData) => {
   try {
@@ -117,3 +135,4 @@ onBeforeMount(() => {
   userStore.getUserData()
 })
 </script>
+

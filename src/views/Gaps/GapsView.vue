@@ -86,7 +86,7 @@ const checkResults = async () => {
   try {
     isChecking.value = true
     const response = await WebHookService.getResult({ id: webhookId }, { answers: answers.value })
-    checkResultsData.value = response.data
+    checkResultsData.value = response.data.result
     showResults.value = true
     console.log('Results:', response.data)
   } catch (error) {
