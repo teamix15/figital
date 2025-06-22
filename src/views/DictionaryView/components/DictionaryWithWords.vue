@@ -17,7 +17,7 @@
               :key="word._id"
               :word="word"
               class="bg-white rounded-xl p-6 flex flex-col hover:shadow-lg transition-shadow"
-              @fetch-words="handleFetchWords"
+              @fetch-words="handleWordDeleted"
             />
           </div>
         </div>
@@ -64,6 +64,15 @@ const closeAddWordModal = () => {
 
 const handleFetchWords = () => {
   dictionaryStore.fetchAllWords({ page: pagination.value?.page, limit: COMMON_PAGE_SIZE })
+}
+
+const handleWordDeleted = () => {
+  const currentPage = pagination.value?.page || 1
+  if (words.value.length === 1 && currentPage > 1) {
+    dictionaryStore.fetchAllWords({ page: currentPage - 1, limit: COMMON_PAGE_SIZE })
+  } else {
+    handleFetchWords()
+  }
 }
 
 const handlePageChange = (page: number) => {

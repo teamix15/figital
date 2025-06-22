@@ -11,7 +11,7 @@
 
     <div class="mt-6 flex justify-end space-x-2">
       <button
-        @click="deleteWord(word._id)"
+        @click="openDeleteConfirmationModal"
         class="p-2 text-gray-500 hover:text-accent transition-colors cursor-pointer h-[36px]"
         title="Delete"
       >
@@ -21,31 +21,47 @@
       </button>
     </div>
   </div>
+  <DeleteConfirmationModal
+    v-if="showDeleteConfirmationModal"
+    @close="closeDeleteConfirmationModal"
+    @confirm="handleDeleteConfirm"
+  />
 </template>
 
 <script lang="ts" setup>
 import TrashIcon from '@/components/icons/TrashIcon.vue'
 import DotsLoader from '@/components/DotsLoader.vue'
 import { DictionaryService } from '@/services/dictionaryService'
-import { useDictionaryStore } from '@/stores/dictionaryStore'
 import { toast } from 'vue3-toastify'
 import { ref } from 'vue'
 import type { DictionaryWord } from '@/shared/interfaces/entities'
+import DeleteConfirmationModal from './DeleteConfirmationModal.vue'
 
 const { word } = defineProps<{ word: DictionaryWord }>()
 const emit = defineEmits(['fetch-words'])
 
-const dictionaryStore = useDictionaryStore()
-
 const isDeleteWordLoading = ref(false)
+const showDeleteConfirmationModal = ref(false)
 
-// TODO: delete from store
+const openDeleteConfirmationModal = () => {
+  showDeleteConfirmationModal.value = true
+}
+
+const closeDeleteConfirmationModal = () => {
+  showDeleteConfirmationModal.value = false
+}
+
+const handleDeleteConfirm = () => {
+  deleteWord(word._id)
+  closeDeleteConfirmationModal()
+}
+
 const deleteWord = async (id: string) => {
   try {
     isDeleteWordLoading.value = true
     await DictionaryService.deleteWord({ combinationId: id })
     await emit('fetch-words')
-  } catch (error) {
+  } catch {
     toast.error('Error deleting word')
   } finally {
     isDeleteWordLoading.value = false

@@ -24,5 +24,9 @@ export const ENDPOINTS = {
   QUIZ_UPLOAD: (unit: number) => `/quiz/upload/${unit}`,
   QUIZ_DOWNLOAD: (unit: number) => `/quiz/download/${unit}`,
 
+  BINARY: (count: number, unit: number) => `/api/v1/binary/${count}/unit/${unit}`,
+  BINARY_UPLOAD: (unit: number) => `/api/v1/binary/upload/${unit}`,
+  BINARY_DOWNLOAD: (unit: number) => `/api/v1/binary/download/${unit}`,
+
   WEBHOOK: (id: string) => `/webhook/${id}`,
 }
