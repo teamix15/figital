@@ -62,7 +62,7 @@ const isLoading = computed(() => dictionaryStore.isLoading)
 const handleSearch = async () => {
   await dictionaryStore.fetchAllWords({
     limit: COMMON_PAGE_SIZE,
-    filter: searchQuery.value.trim(),
+    filter: searchQuery.value.trim()
   })
 }
 
