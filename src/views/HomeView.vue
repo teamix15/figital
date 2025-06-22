@@ -30,9 +30,10 @@
       <div class="max-w-7xl mx-auto">
         <h2 class="text-[#282828] text-4xl sm:text-5xl font-bold mb-4">WHY WE?</h2>
         <p class="text-[#282828] mb-12 max-w-2xl">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto officia quasi,
-          repellendus, dolore velit quod obcaecati saepe iste totam rerum sit tempore, a dolorum
-          minus dolores. Quam laudantium earum officiis.
+          Our platform is designed for creative professionals who want to master English for their
+          careers. We focus on design terminology, communication with international clients, and
+          understanding industry trends. With our interactive lessons and real-world examples,
+          you'll not only learn the language but also gain confidence in your professional skills.
         </p>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
@@ -100,11 +101,11 @@
               delve deeper into the topic, and the thoughtful design makes learning interesting and
               accessible.
             </p>
-            <button
+            <!-- <button
               class="mt-4 sm:absolute sm:bottom-4 sm:right-4 bg-[#fc4994] rounded-full px-4 py-2 sm:px-4 sm:py-1 text-xs text-white z-20"
             >
               MORE
-            </button>
+            </button> -->
           </div>
         </div>
       </div>
